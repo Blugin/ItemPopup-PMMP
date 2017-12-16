@@ -11,7 +11,7 @@ class ItemPopupMain extends PluginBase{
     public function onLoad(){
         if (!extension_loaded('sqlite3')) {
             $this->getLogger()->debug('load sqlite3 extention');
-            dl((PHP_SHLIB_SUFFIX === 'dll') ? 'php_' : '' . 'sqlite3.' . PHP_SHLIB_SUFFIX);
+            dl((PHP_SHLIB_SUFFIX === 'dll' ? 'php_' : '') . 'sqlite3.' . PHP_SHLIB_SUFFIX);
         }
     }
 
@@ -20,10 +20,11 @@ class ItemPopupMain extends PluginBase{
         $db = new \SQLITE3($this->getDataFolder() . "data.sqlite3");
         $db->query("BEGIN;");
         $db->query("
-          CREATE TABLE IF NOT EXISTS popup_list (
+          CREATE TABLE IF NOT EXISTS item_popup_list (
             item_id	INTEGER NOT NULL CHECK(item_id >= 0),
             item_damage INTEGER NOT NULL DEFAULT - 1 CHECK(item_damage >= -1),
-            item_popup TEXT NOT NULL
+            item_popup TEXT NOT NULL,
+            PRIMARY KEY (item_id, item_damage)
           );");
         $db->query("COMMIT;");
     }
