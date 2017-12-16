@@ -61,12 +61,6 @@ class ItemPopupMain extends PluginBase{
              * @param \pocketmine\event\player\PlayerItemHeldEvent $event
              */
             public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event){
-                /**
-                 * @var \pocketmine\item\Item $item
-                 * @var \pocketmine\Player    $player
-                 * @var string                $playerName
-                 * @var string                $result
-                 */
                 $item = $event->getItem();
                 $player = $event->getPlayer();
                 $playerName = $player->getName();
@@ -101,10 +95,6 @@ class ItemPopupMain extends PluginBase{
             switch ($args[0]) {
                 case 'set':
                     if (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int)$args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int)$args[2]) >= -1) {
-                        /**
-                         * @var string $popup
-                         * @var string $result
-                         */
                         $popup = implode(' ', array_slice($args, 3));
                         $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
                         if (!$result)  // When first query result is not exists
@@ -124,9 +114,6 @@ class ItemPopupMain extends PluginBase{
 
                 case 'remove':
                     if (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int)$args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int)$args[2]) >= -1) {
-                        /**
-                         * @var string $result
-                         */
                         $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
                         if (!$result)   // When first query result is not exists
                             $sender->sendMessage('It does not exist.');
@@ -138,11 +125,6 @@ class ItemPopupMain extends PluginBase{
                     }
                     break;
                 case 'list':
-                    /**
-                     * @var int            $page
-                     * @var array[int,int,string]          $list
-                     * @var \SQLite3Result $results
-                     */
                     $page = isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int)$args[1]) > 0 ? $args[1] - 1 : 0;
                     $list = [];
                     $results = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
