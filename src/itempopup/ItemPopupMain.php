@@ -72,9 +72,9 @@ class ItemPopupMain extends PluginBase{
                 $playerName = $player->getName();
                 if (!isset($this->ignore[$playerName]) || !$this->ignore[$playerName]->equals($item, true, true)) {
                     $result = ItemPopupMain::getInstance()->query("SELECT item_popup FROM item_popup_list WHERE item_id = {$item->getId()} AND item_damage = {$item->getDamage()};")->fetchArray(SQLITE3_NUM)[0];
-                    if (!$result)
+                    if (!$result) // When first query result is not exists
                         $result = ItemPopupMain::getInstance()->query("SELECT item_popup FROM item_popup_list WHERE item_id = {$item->getId()} AND item_damage = -1;")->fetchArray(SQLITE3_NUM)[0];
-                    if ($result)
+                    if ($result) // When query result is exists
                         $player->sendPopup($result);
                 }
                 if (isset($this->ignore[$playerName]))
@@ -88,7 +88,72 @@ class ItemPopupMain extends PluginBase{
         }, $this);
     }
 
+    /**
+     * @param \pocketmine\command\CommandSender $sender
+     * @param \pocketmine\command\Command       $command
+     * @param string                            $label
+     * @param array                             $args
+     *
+     * @return bool
+     */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
+        if (isset($args[0])) {
+            switch ($args[0]) {
+                case 'set':
+                    if (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int)$args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int)$args[2]) >= -1) {
+                        /**
+                         * @var string $popup
+                         * @var string $result
+                         */
+                        $popup = implode(' ', array_slice($args, 3));
+                        $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
+                        if (!$result)  // When first query result is not exists
+                            ItemPopupMain::getInstance()->query("INSERT INTO item_popup_list VALUES ($args[1], $args[2], '$popup');");
+                        else
+                            ItemPopupMain::getInstance()->query("
+                                UPDATE item_popup_list
+                                    set item_id = $args[1],
+                                        item_damage = $args[2],
+                                        item_popup = '$popup'
+                                    WHERE item_id = $args[1] AND item_damage = $args[2];
+                            ");
+                        $sender->sendMessage('You have successfully set up a popup.');
+                        return true;
+                    }
+                    break;
+
+                case 'remove':
+                    if (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int)$args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int)$args[2]) >= -1) {
+                        /**
+                         * @var string $result
+                         */
+                        $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
+                        if (!$result)   // When first query result is not exists
+                            $sender->sendMessage('It does not exist.');
+                        else {
+                            ItemPopupMain::getInstance()->query("DELETE FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];");
+                            $sender->sendMessage('You have successfully remove a popup.');
+                        }
+                        return true;
+                    }
+                    break;
+                case 'list':
+                    /**
+                     * @var int            $page
+                     * @var array[int,int,string]          $list
+                     * @var \SQLite3Result $results
+                     */
+                    $page = isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int)$args[1]) > 0 ? $args[1] - 1 : 0;
+                    $list = [];
+                    $results = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
+                    while ($row = $results->fetchArray(SQLITE3_NUM))
+                        $list[] = $row;
+                    for ($i = $page * 5; $i < ($page + 1) * 5 && $i < count($list); $i++)
+                        $sender->sendMessage('[' . ($i + 1) . "][{$list[$i][0]}:{$list[$i][1]}] {$list[$i][2]}");
+                    return true;
+                    break;
+            }
+        }
         return false;
     }
 
