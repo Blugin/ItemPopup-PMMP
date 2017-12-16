@@ -1,0 +1,10 @@
+name:           ItemPopup
+main:           itempopup\ItemPopupMain
+version:        0.0.1
+api:            [3.0.0, 3.0.0-ALPHA10]
+author:         PresentKim
+
+commands:
+ itempopup:
+  description:  "ItemPopup command"
+  usage:        "/ItemPopup <ItemID> <ItemDamage> <PopupText>"
