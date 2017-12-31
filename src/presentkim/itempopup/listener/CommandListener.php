@@ -85,6 +85,12 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                     $sender->sendMessage(translate('command-itempopup-lang@usage'));
                 }
                 break;
+            case translate('command-itempopup-reload'):
+                ItemPopupMain::getInstance()->reload();
+                break;
+            case translate('command-itempopup-save'):
+                ItemPopupMain::getInstance()->save();
+                break;
             default:
                 return false;
         }

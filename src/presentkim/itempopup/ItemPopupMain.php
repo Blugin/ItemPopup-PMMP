@@ -45,26 +45,7 @@ class ItemPopupMain extends PluginBase{
     }
 
     public function onEnable() : void{
-        // load db
-        @mkdir($this->getDataFolder());
-        $this->query("BEGIN;");
-        $this->query("
-          CREATE TABLE IF NOT EXISTS item_popup_list (
-            item_id	INTEGER NOT NULL CHECK(item_id >= 0),
-            item_damage INTEGER NOT NULL DEFAULT - 1 CHECK(item_damage >= -1),
-            item_popup TEXT NOT NULL,
-            PRIMARY KEY (item_id, item_damage)
-          );");
-        $this->query("COMMIT;");
-
-        // load lang
-        $langfilename = $this->getDataFolder() . "lang.yml";
-        if (!file_exists($langfilename)) {
-            Translation::loadFromResource($this->getResource('lang/eng.yml'));
-            Translation::save($langfilename);
-        } else {
-            Translation::load($langfilename);
-        }
+        $this->reload();
 
         // register commands
         /** @noinspection PhpUndefinedClassInspection */
@@ -102,7 +83,6 @@ class ItemPopupMain extends PluginBase{
                 }
             }
 
-
             public function onBlockPlaceEvent(BlockPlaceEvent $event) : void{
                 $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
             }
@@ -116,6 +96,40 @@ class ItemPopupMain extends PluginBase{
      */
     public function query(string $query) : \SQLite3Result{
         return $this->db->query($query);
+    }
+
+    public function reload() : void{
+        // load db
+        @mkdir($this->getDataFolder());
+        $this->query("BEGIN;");
+        $this->query("
+          CREATE TABLE IF NOT EXISTS item_popup_list (
+            item_id	INTEGER NOT NULL CHECK(item_id >= 0),
+            item_damage INTEGER NOT NULL DEFAULT - 1 CHECK(item_damage >= -1),
+            item_popup TEXT NOT NULL,
+            PRIMARY KEY (item_id, item_damage)
+          );");
+        $this->query("COMMIT;");
+
+        // load lang
+        $langfilename = $this->getDataFolder() . "lang.yml";
+        if (!file_exists($langfilename)) {
+            Translation::loadFromResource($this->getResource('lang/eng.yml'));
+            Translation::save($langfilename);
+        } else {
+            Translation::load($langfilename);
+        }
+    }
+
+    public function save() : void{
+        // save lang
+        $langfilename = $this->getDataFolder() . "lang.yml";
+        if (!file_exists($langfilename)) {
+            Translation::loadFromResource($this->getResource('lang/eng.yml'));
+            Translation::save($langfilename);
+        } else {
+            Translation::load($langfilename);
+        }
     }
 
     /**
