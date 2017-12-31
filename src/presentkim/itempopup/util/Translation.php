@@ -13,7 +13,7 @@ class Translation{
     public static function loadForFunc() : void{
         \presentkim\itempopup\ItemPopupMain::getInstance()->getLogger()->debug('presentkim\itempopup\util\Utils loaded');
     }
-    
+
     /**
      * @param string $filename
      */
@@ -54,26 +54,12 @@ class Translation{
                 $value = $value[array_rand($value)];
             }
             if (is_string($value)) {
-                return is_array($params) ? strtr($value, self::listToPairs($params)) : $value;
+                return is_array($params) ? strtr($value, listToPairs($params)) : $value;
             } else {
                 return "$strId is not string";
             }
         }
         return "Undefined \$strId : $strId";
-    }
-
-    /**
-     * @param Object[] $list
-     *
-     * @return string[]
-     */
-    public static function listToPairs(array $list) : array{
-        $pairs = [];
-        $size = sizeOf($list);
-        for ($i = 0; $i < $size; ++$i) {
-            $pairs["{%$i}"] = $list[$i];
-        }
-        return $pairs;
     }
 
     /**
