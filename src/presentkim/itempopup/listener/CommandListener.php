@@ -65,14 +65,16 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
         if (!$sender->hasPermission('itempopup.list.cmd')) {
             $message = translate('command-generic-failure@permission');
         } else {
-            $page = isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) > 0 ? $args[1] - 1 : 0;
             $list = [];
             $results = $plugin->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
             while ($row = $results->fetchArray(SQLITE3_NUM)) {
                 $list[] = $row;
             }
+            $max = ceil(sizeof($list) / 5);
+            $page = min($max, isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) > 0 ? $args[1] - 1 : 0);
+            $message = translate('command-itempopup-list@head', [$page, $max]);
             for ($i = $page * 5; $i < ($page + 1) * 5 && $i < count($list); $i++) {
-                $message .= '[' . ($i + 1) . "][{$list[$i][0]}:{$list[$i][1]}] {$list[$i][2]}\n";
+                $message .= PHP_EOL . translate('command-itempopup-list@item', $list[$i]);
             }
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-lang')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-lang@aliases'))) {

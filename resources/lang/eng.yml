@@ -21,6 +21,8 @@ command-itempopup-remove@aliases: ["r"]
 
 command-itempopup-list: "list"
 command-itempopup-list@usage: "/ItemPopup List <Page>"
+command-itempopup-list@head: "--- Showing popups page {%0} of {%1}) ---"
+command-itempopup-list@item: "    {%0}:{%1} => '{%2}'"
 command-itempopup-list@aliases: ["l"]
 
 command-itempopup-lang: "lang"
