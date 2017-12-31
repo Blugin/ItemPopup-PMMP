@@ -23,6 +23,7 @@ use function strtolower;
  */
 function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
     $prefix = translate('prefix');
+    $plugin = ItemPopupMain::getInstance();
     if (!isset($args[0])) {
         return false;
     } else {
@@ -32,11 +33,11 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                     $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } elseif (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
                     $popup = implode(' ', array_slice($args, 3));
-                    $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
+                    $result = $plugin->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
                     if (!$result) { // When first query result is not exists
-                        ItemPopupMain::getInstance()->query("INSERT INTO item_popup_list VALUES ($args[1], $args[2], '$popup');");
+                        $plugin->query("INSERT INTO item_popup_list VALUES ($args[1], $args[2], '$popup');");
                     } else {
-                        ItemPopupMain::getInstance()->query("
+                        $plugin->query("
                                 UPDATE item_popup_list
                                     set item_id = $args[1],
                                         item_damage = $args[2],
@@ -53,11 +54,11 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 if (!$sender->hasPermission('itempopup.remove.cmd')) {
                     $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } elseif (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
-                    $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
+                    $result = $plugin->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
                     if (!$result) { // When first query result is not exists
                         $sender->sendMessage($prefix . translate('command-itempopup-remove@failure', [$args[1], $args[2]]));
                     } else {
-                        ItemPopupMain::getInstance()->query("DELETE FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];");
+                        $plugin->query("DELETE FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];");
                         $sender->sendMessage($prefix . translate('command-itempopup-remove@success', [$args[1], $args[2]]));
                     }
                 } else {
@@ -70,7 +71,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 } else {
                     $page = isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) > 0 ? $args[1] - 1 : 0;
                     $list = [];
-                    $results = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
+                    $results = $plugin->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
                     while ($row = $results->fetchArray(SQLITE3_NUM)) {
                         $list[] = $row;
                     }
@@ -83,10 +84,10 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 if (!$sender->hasPermission('itempopup.lang.cmd')) {
                     $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } elseif (isset($args[1]) && is_string($args[1]) && ($args[1] = strtolower(trim($args[1])))) {
-                    $resource = ItemPopupMain::getInstance()->getResource("lang/$args[1].yml");
+                    $resource = $plugin->getResource("lang/$args[1].yml");
                     if (is_resource($resource)) {
-                        @mkdir(ItemPopupMain::getInstance()->getDataFolder());
-                        $langfilename = ItemPopupMain::getInstance()->getDataFolder() . "lang.yml";
+                        @mkdir($plugin->getDataFolder());
+                        $langfilename = $plugin->getDataFolder() . "lang.yml";
                         Translation::loadFromResource($resource);
                         Translation::save($langfilename);
                         $sender->sendMessage($prefix . translate('command-itempopup-lang@success', [$args[1]]));
@@ -101,7 +102,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 if (!$sender->hasPermission('itempopup.reload.cmd')) {
                     $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } else {
-                    ItemPopupMain::getInstance()->reload();
+                    $plugin->reload();
                     $sender->sendMessage($prefix . translate('command-itempopup-reload@success'));
                 }
                 break;
@@ -109,7 +110,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 if (!$sender->hasPermission('itempopup.save.cmd')) {
                     $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } else {
-                    ItemPopupMain::getInstance()->save();
+                    $plugin->save();
                     $sender->sendMessage($prefix . translate('command-itempopup-save@success'));
                 }
                 break;
