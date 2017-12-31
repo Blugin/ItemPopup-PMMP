@@ -42,7 +42,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                                     WHERE item_id = $args[1] AND item_damage = $args[2];
                             ");
                     }
-                    $sender->sendMessage($prefix . translate('command-itempopup-set@success'));
+                    $sender->sendMessage($prefix . translate('command-itempopup-set@success',[$args[1],$args[2]]));
                 } else {
                     $sender->sendMessage($prefix . translate('command-itempopup-set@usage'));
                 }
