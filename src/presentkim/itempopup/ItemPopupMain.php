@@ -99,7 +99,6 @@ class ItemPopupMain extends PluginBase{
     public function reload() : void{
         // load db
         @mkdir($this->getDataFolder());
-        $this->query("BEGIN;");
         $this->query("
             CREATE TABLE IF NOT EXISTS item_popup_list (
                 item_id     INTEGER NOT NULL            CHECK(item_id >= 0),
@@ -107,8 +106,8 @@ class ItemPopupMain extends PluginBase{
                 item_popup  TEXT    NOT NULL,
                 PRIMARY KEY (item_id, item_damage)
             );
+            COMMIT;
         ");
-        $this->query("COMMIT;");
 
         // load lang
         $langfilename = $this->getDataFolder() . "lang.yml";
