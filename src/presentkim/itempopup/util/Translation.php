@@ -40,13 +40,14 @@ class Translation{
      *
      * @return string
      */
-    public static function translate(string $strId, array $params = []) : string{
+    public static function translate(string $strId, array $params = null) : string{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
+            if (is_array($value)) {
+                $value = $value[array_rand($value)];
+            }
             if (is_string($value)) {
-                return strtr($value, self::listToPairs($params));
-            } elseif (is_array($value)) {
-                return strtr($value[array_rand($value)], self::listToPairs($params));
+                return is_array($params) ? strtr($value, self::listToPairs($params)) : $value;
             } else {
                 return "$strId is not string";
             }
