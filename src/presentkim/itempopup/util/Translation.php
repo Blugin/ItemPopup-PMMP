@@ -37,14 +37,10 @@ class Translation{
     /**
      * @param string   $strId
      * @param string[] $params = []
-     * @param string   $subId  = null
      *
      * @return string
      */
-    public static function translate(string $strId, array $params = [], string $subId = null) : string{
-        if ($subId) {
-            $strId .= "@$subId";
-        }
+    public static function translate(string $strId, array $params = []) : string{
         if (isset(self::$lang[$strId])) {
             return strtr(self::$lang[$strId], self::listToPairs($params));
         }
@@ -65,6 +61,6 @@ class Translation{
     }
 }
 
-function translate(string $strId, array $params = [], string $subId = null) : string{
-    return Translation::translate($strId, $params, $subId);
+function translate(string $strId, array $params = []) : string{
+    return Translation::translate($strId, $params);
 }
