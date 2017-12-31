@@ -36,7 +36,7 @@ class PlayerEventListener implements Listener{
         $item = $event->getItem();
         $player = $event->getPlayer();
         $playerName = $player->getName();
-        if (!isset($this->ignore[$playerName]) || !$this->ignore[$playerName]->equals($item, true, true)) {
+        if (!$item->hasCustomName() && (!isset($this->ignore[$playerName]) || !$this->ignore[$playerName]->equals($item, true, true))) {
             $result = $this->owner->query("SELECT item_popup FROM item_popup_list WHERE item_id = {$item->getId()} AND item_damage = {$item->getDamage()};")->fetchArray(SQLITE3_NUM)[0];
             if (!$result) { // When first query result is not exists
                 $result = $this->owner->query("SELECT item_popup FROM item_popup_list WHERE item_id = {$item->getId()} AND item_damage = -1;")->fetchArray(SQLITE3_NUM)[0];
