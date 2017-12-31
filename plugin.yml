@@ -1,7 +1,7 @@
 ---
 name:             ItemPopup
 main:             presentkim\itempopup\ItemPopupMain
-version:          0.0.8
+version:          0.0.9
 api:              [3.0.0, 3.0.0-ALPHA10]
 author:           PresentKim
 
