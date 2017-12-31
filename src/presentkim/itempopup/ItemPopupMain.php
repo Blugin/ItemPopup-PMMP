@@ -101,12 +101,13 @@ class ItemPopupMain extends PluginBase{
         @mkdir($this->getDataFolder());
         $this->query("BEGIN;");
         $this->query("
-          CREATE TABLE IF NOT EXISTS item_popup_list (
-            item_id	INTEGER NOT NULL CHECK(item_id >= 0),
-            item_damage INTEGER NOT NULL DEFAULT - 1 CHECK(item_damage >= -1),
-            item_popup TEXT NOT NULL,
-            PRIMARY KEY (item_id, item_damage)
-          );");
+            CREATE TABLE IF NOT EXISTS item_popup_list (
+                item_id     INTEGER NOT NULL            CHECK(item_id >= 0),
+                item_damage INTEGER NOT NULL DEFAULT -1 CHECK(item_damage >= -1),
+                item_popup  TEXT    NOT NULL,
+                PRIMARY KEY (item_id, item_damage)
+            );
+        ");
         $this->query("COMMIT;");
 
         // load lang

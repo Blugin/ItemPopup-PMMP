@@ -30,17 +30,17 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } elseif (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
             $popup = implode(' ', array_slice($args, 3));
-            $result = $plugin->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
+            $result = $plugin->query("SELECT item_id FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
             if (!$result) { // When first query result is not exists
                 $plugin->query("INSERT INTO item_popup_list VALUES ($args[1], $args[2], '$popup');");
             } else {
                 $plugin->query("
-                        UPDATE item_popup_list
-                            set item_id = $args[1],
-                                item_damage = $args[2],
-                                item_popup = '$popup'
-                            WHERE item_id = $args[1] AND item_damage = $args[2];
-                        ");
+                    UPDATE item_popup_list
+                        set item_id = $args[1],
+                        item_damage = $args[2],
+                        item_popup = '$popup'
+                    WHERE item_id = $args[1] AND item_damage = $args[2];
+                ");
             }
             $sender->sendMessage(translate('prefix') . translate('command-itempopup-set@success', [$args[1], $args[2]]));
         } else {
@@ -50,7 +50,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
         if (!$sender->hasPermission('itempopup.remove.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } elseif (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
-            $result = $plugin->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
+            $result = $plugin->query("SELECT item_id FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
             if (!$result) { // When first query result is not exists
                 $sender->sendMessage(translate('prefix') . translate('command-itempopup-remove@failure', [$args[1], $args[2]]));
             } else {
