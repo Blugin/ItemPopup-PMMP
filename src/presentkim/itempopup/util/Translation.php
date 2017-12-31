@@ -10,16 +10,17 @@ class Translation{
     /**
      * @param string $filename
      */
-    public static function load(string $filename): void{
+    public static function load(string $filename) : void{
         self::$lang = yaml_parse($filename);
     }
 
     /**
      * @param resource $resource
      */
-    public static function loadFromResource($resource): void{
-        if (is_resource($resource))
+    public static function loadFromResource($resource) : void{
+        if (is_resource($resource)) {
             self::$lang = yaml_parse(stream_get_contents($resource));
+        }
     }
 
     /**
@@ -28,7 +29,7 @@ class Translation{
      * @return bool Returns TRUE on
      *              success.
      */
-    public static function save(string $filename): bool{
+    public static function save(string $filename) : bool{
         @mkdir(dirname($filename), 0755, true);
         return yaml_emit_file($filename, self::$lang);
     }
@@ -40,11 +41,13 @@ class Translation{
      *
      * @return string
      */
-    public static function translate(string $strId, array $params = [], string $subId = null): string{
-        if ($subId)
+    public static function translate(string $strId, array $params = [], string $subId = null) : string{
+        if ($subId) {
             $strId .= "@$subId";
-        if (isset(self::$lang[$strId]))
+        }
+        if (isset(self::$lang[$strId])) {
             return strtr(self::$lang[$strId], self::listToPairs($params));
+        }
         return "Undefined \$strId : $strId";
     }
 
@@ -53,10 +56,11 @@ class Translation{
      *
      * @return string[]
      */
-    public static function listToPairs(array $list): array{
+    public static function listToPairs(array $list) : array{
         $pairs = [];
-        foreach ($list as $key => $value)
-            $pairs["{%$key}"] = (string)$value;
+        foreach ($list as $key => $value) {
+            $pairs["{%$key}"] = (string) $value;
+        }
         return $pairs;
     }
 }
