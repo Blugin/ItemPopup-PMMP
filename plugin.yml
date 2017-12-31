@@ -7,6 +7,24 @@ author:           PresentKim
 
 permissions:
   itempopup.cmd:
-    description:  ItemPopup Command
+    description:  ItemPopup main command
+    default:      op
+  itempopup.set.cmd:
+    description:  ItemPopup set command
+    default:      op
+  itempopup.remove.cmd:
+    description:  ItemPopup remove command
+    default:      op
+  itempopup.list.cmd:
+    description:  ItemPopup list command
+    default:      op
+  itempopup.lang.cmd:
+    description:  ItemPopup lang command
+    default:      op
+  itempopup.reload.cmd:
+    description:  ItemPopup reload command
+    default:      op
+  itempopup.save.cmd:
+    description:  ItemPopup save command
     default:      op
 ...
