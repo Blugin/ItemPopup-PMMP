@@ -26,14 +26,17 @@ class ItemPopupMain extends PluginBase{
     }
 
     public function onLoad(): void{
+        // register instance
+        self::$instance = $this;
+
+        // init data.sqlite3
         if (!extension_loaded('sqlite3')) {
             $this->getLogger()->debug('load sqlite3 extention');
+            /** @noinspection PhpDeprecationInspection */
             dl((PHP_SHLIB_SUFFIX === 'dll' ? 'php_' : '') . 'sqlite3.' . PHP_SHLIB_SUFFIX);
         }
-
         @mkdir($this->getDataFolder());
         $this->db = new \SQLITE3($this->getDataFolder() . "data.sqlite3");
-        self::$instance = $this;
     }
 
     public function onEnable(): void{
@@ -53,7 +56,7 @@ class ItemPopupMain extends PluginBase{
             /**
              * Array for ignore PlayerItemHeldEvent after BlockPlaceEvent
              *
-             * @var \pocketmine\item\Item[string]
+             * @var \pocketmine\item\Item[] array[string => \pocketmine\item\Item]
              */
             private $ignore = [];
 
