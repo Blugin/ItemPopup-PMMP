@@ -2,6 +2,9 @@
 
 namespace presentkim\itempopup;
 
+use pocketmine\command\{
+  CommandExecutor, PluginCommand
+};
 use pocketmine\event\{
   block\BlockPlaceEvent, player\PlayerItemHeldEvent, Listener
 };
@@ -95,5 +98,34 @@ class ItemPopupMain extends PluginBase{
                 $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
             }
         }, $this);
+    }
+
+    /**
+     * @param string $query
+     *
+     * @return \SQLite3Result
+     */
+    public function query(string $query) : \SQLite3Result{
+        return $this->db->query($query);
+    }
+
+    /**
+     * @param \pocketmine\command\CommandExecutor $executor
+     * @param                                     $name
+     * @param                                     $fallback
+     * @param                                     $permission
+     * @param string                              $description
+     * @param null                                $usageMessage
+     * @param string[]                            $aliases
+     */
+    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = []) : void{
+        $command = new PluginCommand($name, $this);
+        $command->setExecutor($executor);
+        $command->setPermission($permission);
+        $command->setDescription($description);
+        $command->setUsage($usageMessage ?? ("/" . $name));
+        $command->setAliases($aliases);
+
+        $this->getServer()->getCommandMap()->register($fallback, $command);
     }
 }
