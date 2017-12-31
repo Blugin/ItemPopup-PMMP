@@ -17,7 +17,7 @@ command-itempopup-remove: "remove"
 command-itempopup-remove@usage: "/ItemPopup Remove <item id> <item damage>"
 command-itempopup-remove@success: "You have successfully remove a popup of {%0}:{%1}"
 command-itempopup-remove@failure: "{%0}:{%1} is not setted"
-command-itempopup@aliases: ["r"]
+command-itempopup-remove@aliases: ["r"]
 
 command-itempopup-list: "list"
 command-itempopup-list@usage: "/ItemPopup List <Page>"
