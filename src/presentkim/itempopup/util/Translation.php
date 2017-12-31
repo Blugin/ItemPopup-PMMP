@@ -76,6 +76,6 @@ class Translation{
     }
 }
 
-function translate(string $strId, array $params = []) : string{
+function translate(string $strId, array $params = null) : string{
     return Translation::translate($strId, $params);
 }
