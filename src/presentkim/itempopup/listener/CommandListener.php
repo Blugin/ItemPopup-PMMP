@@ -21,7 +21,6 @@ use function strtolower;
  * @return bool
  */
 function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
-    var_dump($args);
     if (isset($args[0])) {
         switch ($args[0]) {
             case translate('command-itempopup-set'):
