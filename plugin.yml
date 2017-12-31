@@ -1,3 +1,4 @@
+---
 name:             ItemPopup
 main:             presentkim\itempopup\ItemPopupMain
 version:          0.0.5
@@ -8,3 +9,4 @@ permissions:
   itempopup.cmd:
     description:  ItemPopup Command
     default:      op
+...
