@@ -42,7 +42,14 @@ class Translation{
      */
     public static function translate(string $strId, array $params = []) : string{
         if (isset(self::$lang[$strId])) {
-            return strtr(self::$lang[$strId], self::listToPairs($params));
+            $value = self::$lang[$strId];
+            if (is_string($value)) {
+                return strtr($value, self::listToPairs($params));
+            } elseif (is_array($value)) {
+                return strtr($value[array_rand($value)], self::listToPairs($params));
+            } else {
+                return "$strId is not string";
+            }
         }
         return "Undefined \$strId : $strId";
     }
