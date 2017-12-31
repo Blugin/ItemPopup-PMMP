@@ -53,7 +53,7 @@ class ItemPopupMain extends PluginBase{
             /**
              * Array for ignore PlayerItemHeldEvent after BlockPlaceEvent
              *
-             * @var array[string]\pocketmine\item\Item
+             * @var \pocketmine\item\Item[string]
              */
             private $ignore = [];
 
@@ -86,7 +86,7 @@ class ItemPopupMain extends PluginBase{
      * @param \pocketmine\command\CommandSender $sender
      * @param \pocketmine\command\Command       $command
      * @param string                            $label
-     * @param array                             $args
+     * @param string[]                          $args
      *
      * @return bool
      */
