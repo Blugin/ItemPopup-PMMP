@@ -67,7 +67,7 @@ class Translation{
      *
      * @return string[] | null
      */
-    public static function getArray(string $strId) : array{
+    public static function getArray(string $strId) : ?array{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
             return is_array($value) ? $value : null;
