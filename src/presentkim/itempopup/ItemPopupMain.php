@@ -5,12 +5,12 @@ namespace presentkim\itempopup;
 use pocketmine\command\{
   CommandExecutor, PluginCommand
 };
-use pocketmine\event\{
-  block\BlockPlaceEvent, player\PlayerItemHeldEvent, Listener
-};
 use pocketmine\plugin\PluginBase;
-use presentkim\itempopup\{
-  listener\CommandListener, util\Translation, util\Utils
+use presentkim\itempopup\listener\{
+  CommandListener, PlayerEventListener
+};
+use presentkim\itempopup\util\{
+  Translation, Utils
 };
 use function presentkim\itempopup\util\translate;
 
@@ -54,40 +54,7 @@ class ItemPopupMain extends PluginBase{
         $this->reload();
 
         // register event listeners
-        $this->getServer()->getPluginManager()->registerEvents(new class() implements Listener{
-
-            /**
-             * Array for ignore PlayerItemHeldEvent after BlockPlaceEvent
-             *
-             * @var \pocketmine\item\Item[] array[string => \pocketmine\item\Item]
-             */
-            private $ignore = [];
-
-            /**
-             * @param \pocketmine\event\player\PlayerItemHeldEvent $event
-             */
-            public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event) : void{
-                $item = $event->getItem();
-                $player = $event->getPlayer();
-                $playerName = $player->getName();
-                if (!isset($this->ignore[$playerName]) || !$this->ignore[$playerName]->equals($item, true, true)) {
-                    $result = ItemPopupMain::getInstance()->query("SELECT item_popup FROM item_popup_list WHERE item_id = {$item->getId()} AND item_damage = {$item->getDamage()};")->fetchArray(SQLITE3_NUM)[0];
-                    if (!$result) { // When first query result is not exists
-                        $result = ItemPopupMain::getInstance()->query("SELECT item_popup FROM item_popup_list WHERE item_id = {$item->getId()} AND item_damage = -1;")->fetchArray(SQLITE3_NUM)[0];
-                    }
-                    if ($result) { // When query result is exists
-                        $player->sendPopup($result);
-                    }
-                }
-                if (isset($this->ignore[$playerName])) {
-                    unset($this->ignore[$playerName]);
-                }
-            }
-
-            public function onBlockPlaceEvent(BlockPlaceEvent $event) : void{
-                $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
-            }
-        }, $this);
+        $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
     /**
