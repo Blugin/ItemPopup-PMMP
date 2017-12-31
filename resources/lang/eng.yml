@@ -1,7 +1,7 @@
 ---
 command-itempopup: "itempopup"
 command-itempopup@usage: "/ItemPopup <set | remove | list | lang>"
-command-itempopup@$description: "Main command of ItemPopup"
+command-itempopup@description: "Main command of ItemPopup"
 
 
 command-itempopup-set: "set"
