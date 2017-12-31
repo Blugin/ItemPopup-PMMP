@@ -11,7 +11,7 @@ class Translation{
      *  static function for load global functions
      */
     public static function loadForFunc() : void{
-        \presentkim\itempopup\ItemPopupMain::getInstance()->getLogger()->debug('presentkim\itempopup\util\Utils loaded');
+        \presentkim\itempopup\ItemPopupMain::getInstance()->getLogger()->debug('presentkim\itempopup\util\Translation loaded');
     }
 
     /**
