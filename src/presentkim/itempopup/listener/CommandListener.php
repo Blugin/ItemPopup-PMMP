@@ -27,7 +27,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
         switch ($args[0]) {
             case translate('command-itempopup-set'):
                 if (!$sender->hasPermission('itempopup.set.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } elseif (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
                     $popup = implode(' ', array_slice($args, 3));
                     $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
@@ -42,15 +42,14 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                                     WHERE item_id = $args[1] AND item_damage = $args[2];
                             ");
                     }
-                    $sender->sendMessage($prefix . translate('command-itempopup-set@success',[$args[1],$args[2]]));
+                    $sender->sendMessage($prefix . translate('command-itempopup-set@success', [$args[1], $args[2]]));
                 } else {
                     $sender->sendMessage($prefix . translate('command-itempopup-set@usage'));
                 }
                 break;
-            case
-            translate('command-itempopup-remove'):
+            case translate('command-itempopup-remove'):
                 if (!$sender->hasPermission('itempopup.remove.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } elseif (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
                     $result = ItemPopupMain::getInstance()->query("SELECT * FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
                     if (!$result) { // When first query result is not exists
@@ -65,7 +64,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 break;
             case translate('command-itempopup-list'):
                 if (!$sender->hasPermission('itempopup.list.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } else {
                     $page = isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) > 0 ? $args[1] - 1 : 0;
                     $list = [];
@@ -80,7 +79,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 break;
             case translate('command-itempopup-lang'):
                 if (!$sender->hasPermission('itempopup.lang.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } elseif (isset($args[1]) && is_string($args[1]) && ($args[1] = strtolower(trim($args[1])))) {
                     $resource = ItemPopupMain::getInstance()->getResource("lang/$args[1].yml");
                     if (is_resource($resource)) {
@@ -98,7 +97,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 break;
             case translate('command-itempopup-reload'):
                 if (!$sender->hasPermission('itempopup.reload.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } else {
                     ItemPopupMain::getInstance()->reload();
                     $sender->sendMessage($prefix . translate('command-itempopup-reload@success'));
@@ -106,7 +105,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 break;
             case translate('command-itempopup-save'):
                 if (!$sender->hasPermission('itempopup.save.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } else {
                     ItemPopupMain::getInstance()->save();
                     $sender->sendMessage($prefix . translate('command-itempopup-save@success'));
@@ -114,9 +113,9 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 break;
             case translate('command-itempopup-help'):
                 if (!$sender->hasPermission('itempopup.help.cmd')) {
-                    $sender->sendMessage($prefix . translate('command.generic.failure@permission'));
+                    $sender->sendMessage($prefix . translate('command-generic-failure@permission'));
                 } else {
-                    
+
                 }
                 break;
             default:
