@@ -81,7 +81,6 @@ class Translation{
         }
         return null;
     }
-
 }
 
 function translate(string $strId, array $params = []) : string{

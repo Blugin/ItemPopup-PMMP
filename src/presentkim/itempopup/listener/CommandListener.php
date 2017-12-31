@@ -23,7 +23,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
     $plugin = ItemPopupMain::getInstance();
     if (!isset($args[0])) {
         return false;
-    } elseif (strcasecmp($args[0], translate('command-itempopup-set'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-set')) == 0) {
         if (!$sender->hasPermission('itempopup.set.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } elseif (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
@@ -44,7 +44,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
         } else {
             $sender->sendMessage(translate('prefix') . translate('command-itempopup-set@usage'));
         }
-    } elseif (strcasecmp($args[0], translate('command-itempopup-remove'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-remove')) == 0) {
         if (!$sender->hasPermission('itempopup.remove.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } elseif (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
@@ -58,7 +58,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
         } else {
             $sender->sendMessage(translate('prefix') . translate('command-itempopup-remove@usage'));
         }
-    } elseif (strcasecmp($args[0], translate('command-itempopup-list'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-list')) == 0) {
         if (!$sender->hasPermission('itempopup.list.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } else {
@@ -72,7 +72,7 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 $sender->sendMessage(translate('prefix') . '[' . ($i + 1) . "][{$list[$i][0]}:{$list[$i][1]}] {$list[$i][2]}");
             }
         }
-    } elseif (strcasecmp($args[0], translate('command-itempopup-lang'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-lang')) == 0) {
         if (!$sender->hasPermission('itempopup.lang.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } elseif (isset($args[1]) && is_string($args[1]) && ($args[1] = strtolower(trim($args[1])))) {
@@ -89,21 +89,21 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
         } else {
             $sender->sendMessage(translate('prefix') . translate('command-itempopup-lang@usage'));
         }
-    } elseif (strcasecmp($args[0], translate('command-itempopup-reload'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-reload')) == 0) {
         if (!$sender->hasPermission('itempopup.reload.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } else {
             $plugin->reload();
             $sender->sendMessage(translate('prefix') . translate('command-itempopup-reload@success'));
         }
-    } elseif (strcasecmp($args[0], translate('command-itempopup-save'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-save')) == 0) {
         if (!$sender->hasPermission('itempopup.save.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } else {
             $plugin->save();
             $sender->sendMessage(translate('prefix') . translate('command-itempopup-save@success'));
         }
-    } elseif (strcasecmp($args[0], translate('command-itempopup-help'))) {
+    } elseif (strcasecmp($args[0], translate('command-itempopup-help')) == 0) {
         if (!$sender->hasPermission('itempopup.help.cmd')) {
             $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
         } else {
