@@ -67,6 +67,20 @@ class Translation{
         }
         return $pairs;
     }
+
+    /**
+     * @param string $strId
+     *
+     * @return string[] | null
+     */
+    public static function getArray(string $strId) : array{
+        if (isset(self::$lang[$strId])) {
+            $value = self::$lang[$strId];
+            return is_array($value) ? $value : null;
+        }
+        return null;
+    }
+
 }
 
 function translate(string $strId, array $params = []) : string{
