@@ -64,3 +64,7 @@ class Translation{
         return $pairs;
     }
 }
+
+function translate(string $strId, array $params = [], string $subId = null) : string{
+    return Translation::translate($strId, $params, $subId);
+}
