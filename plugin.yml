@@ -4,12 +4,6 @@ version:          0.0.5
 api:              [3.0.0, 3.0.0-ALPHA10]
 author:           PresentKim
 
-commands:
-  itempopup:
-    description:  "ItemPopup command"
-    permission:   itempopup.cmd
-    usage:        "/ItemPopup <Set | Remove | List> <ItemID> <ItemDamage> [PopupText |  | Page]"
-
 permissions:
   itempopup.cmd:
     description:  ItemPopup Command
