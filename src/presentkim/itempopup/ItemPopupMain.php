@@ -9,7 +9,11 @@ use pocketmine\event\{
   block\BlockPlaceEvent, player\PlayerItemHeldEvent, Listener
 };
 use pocketmine\plugin\PluginBase;
-use presentkim\itempopup\util\Translation;
+use presentkim\itempopup\{
+    /** @noinspection PhpUndefinedClassInspection */
+  listener\CommandListener, util\Translation
+};
+use function presentkim\itempopup\util\translate;
 
 class ItemPopupMain extends PluginBase{
 
@@ -61,6 +65,11 @@ class ItemPopupMain extends PluginBase{
         } else {
             Translation::load($langfilename);
         }
+
+        // register commands
+        /** @noinspection PhpUndefinedClassInspection */
+        $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'));
+
 
         // register event listeners
         $this->getServer()->getPluginManager()->registerEvents(new class() implements Listener{
