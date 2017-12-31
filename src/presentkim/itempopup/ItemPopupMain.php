@@ -10,8 +10,7 @@ use pocketmine\event\{
 };
 use pocketmine\plugin\PluginBase;
 use presentkim\itempopup\{
-    /** @noinspection PhpUndefinedClassInspection */
-  listener\CommandListener, util\Translation
+  listener\CommandListener, util\Translation, util\Utils
 };
 use function presentkim\itempopup\util\translate;
 
@@ -36,6 +35,10 @@ class ItemPopupMain extends PluginBase{
     public function onLoad() : void{
         // register instance
         self::$instance = $this;
+
+        // load utils
+        Utils::loadForFunc();
+        Translation::loadForFunc();
 
         // init data.sqlite3
         if (!extension_loaded('sqlite3')) {
