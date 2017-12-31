@@ -1,0 +1,23 @@
+---
+command-itempopup: "itempopup"
+command-itempopup@usage: "/ItemPopup <set | remove | list | lang>"
+command-itempopup@$description: "Main command of ItemPopup"
+
+
+command-itempopup-set: "set"
+command-itempopup-set@usage: "/ItemPopup Set <item id> <item damage> <popup>"
+command-itempopup-set@success: "You have successfully set up a popup of {%0}:{%1}"
+
+command-itempopup-remove: "remove"
+command-itempopup-remove@usage: "/ItemPopup Remove <item id> <item damage>"
+command-itempopup-remove@success: "You have successfully remove a popup of {%0}:{%1}"
+command-itempopup-remove@failure: "{%0}:{%1} is not setted"
+
+command-itempopup-list: "list"
+command-itempopup-list@usage: "/ItemPopup List <Page>"
+
+command-itempopup-lang: "lang"
+command-itempopup-lang@usage: "/ItemPopup Lang <language prefix>"
+command-itempopup-lang@success: "You have successfully load {%0} language file."
+command-itempopup-lang@failure: "{%0} is undefined language prefix"
+...
