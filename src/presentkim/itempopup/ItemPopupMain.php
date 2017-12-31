@@ -1,6 +1,6 @@
 <?php
 
-namespace itempopup;
+namespace presentkim\itempopup;
 
 use pocketmine\command\{
   Command, CommandSender
@@ -12,20 +12,20 @@ use pocketmine\plugin\PluginBase;
 
 class ItemPopupMain extends PluginBase{
 
-    /** @var \itempopup\ItemPopupMain */
+    /** @var \presentkim\itempopup\ItemPopupMain */
     private static $instance = null;
 
     /** @var \Sqlite3 */
     private $db;
 
     /**
-     * @return \itempopup\ItemPopupMain
+     * @return \presentkim\itempopup\ItemPopupMain
      */
     public static function getInstance(): ItemPopupMain{
         return self::$instance;
     }
 
-    public function onLoad(){
+    public function onLoad(): void{
         if (!extension_loaded('sqlite3')) {
             $this->getLogger()->debug('load sqlite3 extention');
             dl((PHP_SHLIB_SUFFIX === 'dll' ? 'php_' : '') . 'sqlite3.' . PHP_SHLIB_SUFFIX);
@@ -36,7 +36,7 @@ class ItemPopupMain extends PluginBase{
         self::$instance = $this;
     }
 
-    public function onEnable(){
+    public function onEnable(): void{
         @mkdir($this->getDataFolder());
         $this->query("BEGIN;");
         $this->query("
@@ -60,7 +60,7 @@ class ItemPopupMain extends PluginBase{
             /**
              * @param \pocketmine\event\player\PlayerItemHeldEvent $event
              */
-            public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event){
+            public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event): void{
                 $item = $event->getItem();
                 $player = $event->getPlayer();
                 $playerName = $player->getName();
@@ -76,7 +76,7 @@ class ItemPopupMain extends PluginBase{
             }
 
 
-            public function onBlockPlaceEvent(BlockPlaceEvent $event){
+            public function onBlockPlaceEvent(BlockPlaceEvent $event): void{
                 $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
             }
         }, $this);
