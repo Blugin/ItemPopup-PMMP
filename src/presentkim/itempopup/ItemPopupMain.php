@@ -147,13 +147,15 @@ class ItemPopupMain extends PluginBase{
      * @param                                     $permission
      * @param string                              $description
      * @param null                                $usageMessage
+     * @param string[]                            $aliases
      */
-    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null) : void{
+    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = []) : void{
         $command = new PluginCommand($name, $this);
         $command->setExecutor($executor);
         $command->setPermission($permission);
         $command->setDescription($description);
         $command->setUsage($usageMessage ?? ("/" . $name));
+        $command->setAliases($aliases);
 
         $this->getServer()->getCommandMap()->register($fallback, $command);
         $this->commands[] = $command;
