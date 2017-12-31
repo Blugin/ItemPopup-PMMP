@@ -23,11 +23,12 @@ use function presentkim\itempopup\util\{
  */
 function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
     $plugin = ItemPopupMain::getInstance();
+    $message = '';
     if (!isset($args[0])) {
         return false;
     } elseif (strcasecmp($args[0], translate('command-itempopup-set')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-set@aliases'))) {
         if (!$sender->hasPermission('itempopup.set.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } elseif (isset($args[3]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
             $popup = implode(' ', array_slice($args, 3));
             $result = $plugin->query("SELECT item_id FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
@@ -42,27 +43,27 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                     WHERE item_id = $args[1] AND item_damage = $args[2];
                 ");
             }
-            $sender->sendMessage(translate('prefix') . translate('command-itempopup-set@success', [$args[1], $args[2]]));
+            $message = translate('command-itempopup-set@success', [$args[1], $args[2]]);
         } else {
-            $sender->sendMessage(translate('prefix') . translate('command-itempopup-set@usage'));
+            $message = translate('command-itempopup-set@usage');
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-remove')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-remove@aliases'))) {
         if (!$sender->hasPermission('itempopup.remove.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } elseif (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
             $result = $plugin->query("SELECT item_id FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[2];
             if (!$result) { // When first query result is not exists
-                $sender->sendMessage(translate('prefix') . translate('command-itempopup-remove@failure', [$args[1], $args[2]]));
+                $message = translate('command-itempopup-remove@failure', [$args[1], $args[2]]);
             } else {
                 $plugin->query("DELETE FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];");
-                $sender->sendMessage(translate('prefix') . translate('command-itempopup-remove@success', [$args[1], $args[2]]));
+                $message = translate('command-itempopup-remove@success', [$args[1], $args[2]]);
             }
         } else {
-            $sender->sendMessage(translate('prefix') . translate('command-itempopup-remove@usage'));
+            $message = translate('command-itempopup-remove@usage');
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-list')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-list@aliases'))) {
         if (!$sender->hasPermission('itempopup.list.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } else {
             $page = isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) > 0 ? $args[1] - 1 : 0;
             $list = [];
@@ -71,12 +72,12 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 $list[] = $row;
             }
             for ($i = $page * 5; $i < ($page + 1) * 5 && $i < count($list); $i++) {
-                $sender->sendMessage(translate('prefix') . '[' . ($i + 1) . "][{$list[$i][0]}:{$list[$i][1]}] {$list[$i][2]}");
+                $message .= '[' . ($i + 1) . "][{$list[$i][0]}:{$list[$i][1]}] {$list[$i][2]}\n";
             }
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-lang')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-lang@aliases'))) {
         if (!$sender->hasPermission('itempopup.lang.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } elseif (isset($args[1]) && is_string($args[1]) && ($args[1] = strtolower(trim($args[1])))) {
             $resource = $plugin->getResource("lang/$args[1].yml");
             if (is_resource($resource)) {
@@ -84,36 +85,37 @@ function onCommand(CommandSender $sender, Command $command, string $label, array
                 $langfilename = $plugin->getDataFolder() . "lang.yml";
                 Translation::loadFromResource($resource);
                 Translation::save($langfilename);
-                $sender->sendMessage(translate('prefix') . translate('command-itempopup-lang@success', [$args[1]]));
+                $message = translate('command-itempopup-lang@success', [$args[1]]);
             } else {
-                $sender->sendMessage(translate('prefix') . translate('command-itempopup-lang@failure', [$args[1]]));
+                $message = translate('command-itempopup-lang@failure', [$args[1]]);
             }
         } else {
-            $sender->sendMessage(translate('prefix') . translate('command-itempopup-lang@usage'));
+            $message = translate('command-itempopup-lang@usage');
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-reload')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-reload@aliases'))) {
         if (!$sender->hasPermission('itempopup.reload.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } else {
             $plugin->reload();
-            $sender->sendMessage(translate('prefix') . translate('command-itempopup-reload@success'));
+            $message = translate('command-itempopup-reload@success');
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-save')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-save@aliases'))) {
         if (!$sender->hasPermission('itempopup.save.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } else {
             $plugin->save();
-            $sender->sendMessage(translate('prefix') . translate('command-itempopup-save@success'));
+            $message = translate('command-itempopup-save@success');
         }
     } elseif (strcasecmp($args[0], translate('command-itempopup-help')) === 0 || in_arrayi($args[0], Translation::getArray('command-itempopup-help@aliases'))) {
         if (!$sender->hasPermission('itempopup.help.cmd')) {
-            $sender->sendMessage(translate('prefix') . translate('command-generic-failure@permission'));
+            $message = translate('command-generic-failure@permission');
         } else {
 
         }
     } else {
         return false;
     }
+    $sender->sendMessage(translate('prefix') . $message);
     return true;
 }
 
