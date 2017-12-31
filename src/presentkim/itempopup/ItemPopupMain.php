@@ -23,6 +23,9 @@ class ItemPopupMain extends PluginBase{
     /** @var \Sqlite3 */
     private $db;
 
+    /** @var \pocketmine\command\PluginCommand[] */
+    private $commands = [];
+
     /**
      * @return \presentkim\itempopup\ItemPopupMain
      */
@@ -46,11 +49,6 @@ class ItemPopupMain extends PluginBase{
 
     public function onEnable() : void{
         $this->reload();
-
-        // register commands
-        /** @noinspection PhpUndefinedClassInspection */
-        $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'));
-
 
         // register event listeners
         $this->getServer()->getPluginManager()->registerEvents(new class() implements Listener{
@@ -119,6 +117,16 @@ class ItemPopupMain extends PluginBase{
         } else {
             Translation::load($langfilename);
         }
+
+        // unregister commands
+        foreach ($this->commands as $command) {
+            $this->getServer()->getCommandMap()->unregister($command);
+        }
+        $this->commands = [];
+
+        // register commands
+        /** @noinspection PhpUndefinedClassInspection */
+        $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'));
     }
 
     public function save() : void{
@@ -150,5 +158,6 @@ class ItemPopupMain extends PluginBase{
         $command->setAliases($aliases);
 
         $this->getServer()->getCommandMap()->register($fallback, $command);
+        $this->commands[] = $command;
     }
 }
