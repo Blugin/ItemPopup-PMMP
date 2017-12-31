@@ -61,8 +61,9 @@ class Translation{
      */
     public static function listToPairs(array $list) : array{
         $pairs = [];
-        foreach ($list as $key => $value) {
-            $pairs["{%$key}"] = (string) $value;
+        $size = sizeOf($list);
+        for ($i = 0; $i < $size; ++$i) {
+            $pairs["{%$i}"] = $list[$i];
         }
         return $pairs;
     }
