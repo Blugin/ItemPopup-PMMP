@@ -23,10 +23,10 @@ use function presentkim\itempopup\util\{
  */
 function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
     $plugin = ItemPopupMain::getInstance();
-    $message = '';
     if (!isset($args[0])) {
         return false;
     } else {
+        $message = '';
         /**
          * \Closure[] $subcommands
          */
