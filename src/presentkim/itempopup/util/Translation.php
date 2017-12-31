@@ -11,7 +11,7 @@ class Translation{
      * @param string $filename
      */
     public static function load(string $filename) : void{
-        self::$lang = yaml_parse($filename);
+        self::$lang = yaml_parse_file($filename);
     }
 
     /**
