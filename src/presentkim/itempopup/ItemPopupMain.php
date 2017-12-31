@@ -9,6 +9,7 @@ use pocketmine\event\{
   block\BlockPlaceEvent, player\PlayerItemHeldEvent, Listener
 };
 use pocketmine\plugin\PluginBase;
+use presentkim\itempopup\util\Translation;
 
 class ItemPopupMain extends PluginBase{
 
@@ -40,6 +41,7 @@ class ItemPopupMain extends PluginBase{
     }
 
     public function onEnable(): void{
+        // load db
         @mkdir($this->getDataFolder());
         $this->query("BEGIN;");
         $this->query("
@@ -51,6 +53,16 @@ class ItemPopupMain extends PluginBase{
           );");
         $this->query("COMMIT;");
 
+        // load lang
+        $langfilename = $this->getDataFolder() . "lang.yml";
+        if (!file_exists($langfilename)) {
+            Translation::loadFromResource($this->getResource('lang/eng.yml'));
+            Translation::save($langfilename);
+        } else {
+            Translation::load($langfilename);
+        }
+
+        // register event listener
         $this->getServer()->getPluginManager()->registerEvents(new class() implements Listener{
 
             /**
