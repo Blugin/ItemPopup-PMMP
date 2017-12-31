@@ -23,7 +23,9 @@ use function strtolower;
  */
 function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
     $prefix = translate('prefix');
-    if (isset($args[0])) {
+    if (!isset($args[0])) {
+        return false;
+    } else {
         switch ($args[0]) {
             case translate('command-itempopup-set'):
                 if (!$sender->hasPermission('itempopup.set.cmd')) {
