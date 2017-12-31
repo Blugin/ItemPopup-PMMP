@@ -126,7 +126,7 @@ class ItemPopupMain extends PluginBase{
 
         // register commands
         /** @noinspection PhpUndefinedClassInspection */
-        $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'));
+        $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
     }
 
     public function save() : void{
@@ -149,13 +149,15 @@ class ItemPopupMain extends PluginBase{
      * @param null                                $usageMessage
      * @param string[]                            $aliases
      */
-    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = []) : void{
+    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null) : void{
         $command = new PluginCommand($name, $this);
         $command->setExecutor($executor);
         $command->setPermission($permission);
         $command->setDescription($description);
         $command->setUsage($usageMessage ?? ("/" . $name));
-        $command->setAliases($aliases);
+        if (is_array($aliases)) {
+            $command->setAliases($aliases);
+        }
 
         $this->getServer()->getCommandMap()->register($fallback, $command);
         $this->commands[] = $command;
