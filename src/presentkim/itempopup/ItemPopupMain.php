@@ -16,7 +16,7 @@ use function presentkim\itempopup\util\translate;
 
 class ItemPopupMain extends PluginBase{
 
-    /** @var ItemPopupMain */
+    /** @var self */
     private static $instance = null;
 
     /** @var \Sqlite3 */
@@ -26,9 +26,9 @@ class ItemPopupMain extends PluginBase{
     private $commands = [];
 
     /**
-     * @return ItemPopupMain
+     * @return self
      */
-    public static function getInstance() : ItemPopupMain{
+    public static function getInstance() : self{
         return self::$instance;
     }
 
