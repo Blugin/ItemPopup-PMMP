@@ -22,7 +22,7 @@ class PlayerEventListener implements Listener{
      */
     private $ignore = [];
 
-    /** @var \presentkim\itempopup\ItemPopupMain */
+    /** @var ItemPopupMain */
     private $owner = null;
 
     public function __construct(){
@@ -30,7 +30,7 @@ class PlayerEventListener implements Listener{
     }
 
     /**
-     * @param \pocketmine\event\player\PlayerItemHeldEvent $event
+     * @param PlayerItemHeldEvent $event
      */
     public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event) : void{
         $item = $event->getItem();
@@ -50,6 +50,9 @@ class PlayerEventListener implements Listener{
         }
     }
 
+    /**
+     * @param BlockPlaceEvent $event
+     */
     public function onBlockPlaceEvent(BlockPlaceEvent $event) : void{
         $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
     }

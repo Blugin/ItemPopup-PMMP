@@ -16,17 +16,17 @@ use function presentkim\itempopup\util\translate;
 
 class ItemPopupMain extends PluginBase{
 
-    /** @var \presentkim\itempopup\ItemPopupMain */
+    /** @var ItemPopupMain */
     private static $instance = null;
 
     /** @var \Sqlite3 */
     private $db;
 
-    /** @var \pocketmine\command\PluginCommand[] */
+    /** @var PluginCommand[] */
     private $commands = [];
 
     /**
-     * @return \presentkim\itempopup\ItemPopupMain
+     * @return ItemPopupMain
      */
     public static function getInstance() : ItemPopupMain{
         return self::$instance;
@@ -95,7 +95,6 @@ class ItemPopupMain extends PluginBase{
         $this->commands = [];
 
         // register commands
-        /** @noinspection PhpUndefinedClassInspection */
         $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
     }
 
@@ -111,13 +110,13 @@ class ItemPopupMain extends PluginBase{
     }
 
     /**
-     * @param \pocketmine\command\CommandExecutor $executor
-     * @param                                     $name
-     * @param                                     $fallback
-     * @param                                     $permission
-     * @param string                              $description
-     * @param null                                $usageMessage
-     * @param string[]                            $aliases
+     * @param CommandExecutor $executor
+     * @param                 $name
+     * @param                 $fallback
+     * @param                 $permission
+     * @param string          $description
+     * @param null            $usageMessage
+     * @param array|null      $aliases
      */
     private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null) : void{
         $command = new PluginCommand($name, $this);

@@ -15,10 +15,10 @@ use function presentkim\itempopup\util\{
 class CommandListener implements CommandExecutor{
 
     /**
-     * @param \pocketmine\command\CommandSender $sender
-     * @param \pocketmine\command\Command       $command
-     * @param string                            $label
-     * @param string[]                          $args
+     * @param CommandSender $sender
+     * @param Command       $command
+     * @param string        $label
+     * @param string[]      $args
      *
      * @return bool
      */
