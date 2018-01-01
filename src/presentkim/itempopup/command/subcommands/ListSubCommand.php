@@ -6,6 +6,7 @@ use pocketmine\command\CommandSender;
 use presentkim\itempopup\{
   ItemPopupMain as Plugin, util\Translation, command\SubCommand
 };
+use function presentkim\itempopup\util\toInt;
 
 class ListSubCommand extends SubCommand{
 
@@ -26,8 +27,10 @@ class ListSubCommand extends SubCommand{
             $list[] = $row;
         }
         $max = ceil(sizeof($list) / 5);
-        $page = min($max, isset($args[0]) && is_numeric($args[0]) && ($args[0] = (int) $args[0]) > 0 ? $args[0] - 1 : 0);
-        $message = Translation::translate("$this->strId@head", $page, $max);
+        $page = min($max, (isset($args[0]) ? toInt($args[0], 1, function (int $i){
+              return $i > 0 ? 1 : -1;
+          }) : 1) - 1);
+        $message = Translation::translate("$this->strId@head", $page + 1, $max);
         for ($i = $page * 5; $i < ($page + 1) * 5 && $i < count($list); $i++) {
             $message .= PHP_EOL . Translation::translate("$this->strId@item", ...$list[$i]);
         }
