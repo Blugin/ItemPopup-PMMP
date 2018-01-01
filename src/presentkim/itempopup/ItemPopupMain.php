@@ -6,8 +6,8 @@ use pocketmine\command\{
   CommandExecutor, PluginCommand
 };
 use pocketmine\plugin\PluginBase;
-use presentkim\itempopup\listener\{
-  CommandListener, PlayerEventListener
+use presentkim\itempopup\{
+  listener\PlayerEventListener, command\CommandListener
 };
 use presentkim\itempopup\util\{
   Translation
