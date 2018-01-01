@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: qjrmc
- * Date: 2018-01-01
- * Time: 오전 7:05
- */
 
 namespace presentkim\itempopup\listener;
 
