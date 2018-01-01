@@ -24,9 +24,7 @@ class ItemPopupMain extends PluginBase{
     /** @var PluginCommand[] */
     private $commands = [];
 
-    /**
-     * @return self
-     */
+    /** @return self */
     public static function getInstance() : self{
         return self::$instance;
     }

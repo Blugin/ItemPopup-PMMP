@@ -7,16 +7,12 @@ class Translation{
     /** @var string[string] */
     private static $lang = [];
 
-    /**
-     * @param string $filename
-     */
+    /** @param string $filename */
     public static function load(string $filename) : void{
         self::$lang = yaml_parse_file($filename);
     }
 
-    /**
-     * @param resource $resource
-     */
+    /** @param resource $resource */
     public static function loadFromResource($resource) : void{
         if (is_resource($resource)) {
             self::$lang = yaml_parse(stream_get_contents($resource));

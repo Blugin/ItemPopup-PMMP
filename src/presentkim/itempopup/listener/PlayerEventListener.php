@@ -23,9 +23,7 @@ class PlayerEventListener implements Listener{
         $this->owner = ItemPopupMain::getInstance();
     }
 
-    /**
-     * @param PlayerItemHeldEvent $event
-     */
+    /** @param PlayerItemHeldEvent $event */
     public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event) : void{
         $item = $event->getItem();
         $player = $event->getPlayer();
@@ -44,9 +42,7 @@ class PlayerEventListener implements Listener{
         }
     }
 
-    /**
-     * @param BlockPlaceEvent $event
-     */
+    /** @param BlockPlaceEvent $event */
     public function onBlockPlaceEvent(BlockPlaceEvent $event) : void{
         $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
     }
