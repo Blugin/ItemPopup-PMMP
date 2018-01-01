@@ -12,6 +12,7 @@ use presentkim\itempopup\{
 use presentkim\itempopup\util\{
   Translation
 };
+use function presentkim\itempopup\util\extensionLoad;
 
 class ItemPopupMain extends PluginBase{
 
@@ -38,11 +39,7 @@ class ItemPopupMain extends PluginBase{
         $this->getServer()->getLoader()->loadClass('presentkim\itempopup\util\Translation');
 
         // init data.sqlite3
-        if (!extension_loaded('sqlite3')) {
-            $this->getLogger()->debug('load sqlite3 extention');
-            /** @noinspection PhpDeprecationInspection */
-            dl((PHP_SHLIB_SUFFIX === 'dll' ? 'php_' : '') . 'sqlite3.' . PHP_SHLIB_SUFFIX);
-        }
+        extensionLoad('sqlite3');
         @mkdir($this->getDataFolder());
         $this->db = new \SQLITE3($this->getDataFolder() . "data.sqlite3");
     }
