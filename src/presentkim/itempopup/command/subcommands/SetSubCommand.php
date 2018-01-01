@@ -25,7 +25,7 @@ class SetSubCommand extends SubCommand{
             $itemId = toInt($args[0], null, function (int $i){
                 return $i >= 0;
             });
-            $itemDamage = toInt($args[0], null, function (int $i){
+            $itemDamage = toInt($args[1], null, function (int $i){
                 return $i >= -1;
             });
             if ($itemId !== null && $itemDamage !== null) {
