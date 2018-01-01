@@ -35,12 +35,12 @@ class SetSubCommand extends SubCommand{
                     $this->owner->query("INSERT INTO item_popup_list VALUES ($itemId, $itemDamage, '$popup');");
                 } else {
                     $this->owner->query("
-                    UPDATE item_popup_list
-                        set item_id = $itemId,
-                        item_damage = $itemDamage,
-                        item_popup = '$popup'
-                    WHERE item_id = $itemId AND item_damage = $itemDamage;
-                ");
+                        UPDATE item_popup_list
+                            set item_id = $itemId,
+                            item_damage = $itemDamage,
+                            item_popup = '$popup'
+                        WHERE item_id = $itemId AND item_damage = $itemDamage;
+                    ");
                 }
                 $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $itemId, $itemDamage, $popup));
                 return true;
