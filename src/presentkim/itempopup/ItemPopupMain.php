@@ -92,7 +92,7 @@ class ItemPopupMain extends PluginBase{
         $this->commands = [];
 
         // register commands
-        $this->registerCommand(new CommandListener(), Translation::translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', Translation::translate('command-itempopup@description'), Translation::translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
+        $this->registerCommand(new CommandListener($this), Translation::translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', Translation::translate('command-itempopup@description'), Translation::translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
     }
 
     public function save() : void{
