@@ -47,10 +47,7 @@ class CommandListener implements CommandExecutor{
                                   WHERE item_id = $args[1] AND item_damage = $args[2];
                           ");
                       }
-                      $message = translate("$strId@success", [
-                        $args[1],
-                        $args[2],
-                      ]);
+                      $message = translate("$strId@success", $args[1], $args[2]);
                       return true;
                   } else {
                       return false;
@@ -60,16 +57,10 @@ class CommandListener implements CommandExecutor{
                   if (isset($args[2]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) >= 0 && is_numeric($args[2]) && ($args[2] = (int) $args[2]) >= -1) {
                       $result = $plugin->query("SELECT item_id FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];")->fetchArray(SQLITE3_NUM)[0];
                       if (!$result) { // When first query result is not exists
-                          $message = translate("$strId@failure", [
-                            $args[1],
-                            $args[2],
-                          ]);
+                          $message = translate("$strId@failure", $args[1], $args[2]);
                       } else {
                           $plugin->query("DELETE FROM item_popup_list WHERE item_id = $args[1] AND item_damage = $args[2];");
-                          $message = translate("$strId@success", [
-                            $args[1],
-                            $args[2],
-                          ]);
+                          $message = translate("$strId@success", $args[1], $args[2]);
                       }
                       return true;
                   } else {
@@ -84,12 +75,9 @@ class CommandListener implements CommandExecutor{
                   }
                   $max = ceil(sizeof($list) / 5);
                   $page = min($max, isset($args[1]) && is_numeric($args[1]) && ($args[1] = (int) $args[1]) > 0 ? $args[1] - 1 : 0);
-                  $message = translate("$strId@head", [
-                    $page,
-                    $max,
-                  ]);
+                  $message = translate("$strId@head", $page, $max);
                   for ($i = $page * 5; $i < ($page + 1) * 5 && $i < count($list); $i++) {
-                      $message .= PHP_EOL . translate("$strId@item", $list[$i]);
+                      $message .= PHP_EOL . translate("$strId@item", ...$list[$i]);
                   }
                   return true;
               },
@@ -101,9 +89,9 @@ class CommandListener implements CommandExecutor{
                           $langfilename = $plugin->getDataFolder() . "lang.yml";
                           Translation::loadFromResource($resource);
                           Translation::save($langfilename);
-                          $message = translate("$strId@success", [$args[1]]);
+                          $message = translate("$strId@success", $args[1]);
                       } else {
-                          $message = translate("$strId@failure", [$args[1]]);
+                          $message = translate("$strId@failure", $args[1]);
                       }
                       return true;
                   } else {

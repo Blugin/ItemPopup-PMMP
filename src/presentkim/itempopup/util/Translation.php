@@ -36,18 +36,18 @@ class Translation{
 
     /**
      * @param string   $strId
-     * @param string[] $params = []
+     * @param string[] $params
      *
      * @return string
      */
-    public static function translate(string $strId, array $params = null) : string{
+    public static function translate(string $strId, string ...$params) : string{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
             if (is_array($value)) {
                 $value = $value[array_rand($value)];
             }
             if (is_string($value)) {
-                return is_array($params) ? strtr($value, listToPairs($params)) : $value;
+                return empty($params) ? $value : strtr($value, listToPairs($params));
             } else {
                 return "$strId is not string";
             }
@@ -69,6 +69,6 @@ class Translation{
     }
 }
 
-function translate(string $strId, array $params = null) : string{
-    return Translation::translate($strId, $params);
+function translate(string $strId, string ...$params) : string{
+    return Translation::translate($strId, ...$params);
 }
