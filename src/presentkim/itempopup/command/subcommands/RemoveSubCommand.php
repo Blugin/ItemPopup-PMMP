@@ -31,10 +31,10 @@ class RemoveSubCommand extends SubCommand{
             if ($itemId !== null && $itemDamage !== null) {
                 $result = $this->owner->query("SELECT item_id FROM item_popup_list WHERE item_id = $itemId AND item_damage = $itemDamage;")->fetchArray(SQLITE3_NUM)[0];
                 if (!$result) { // When first query result is not exists
-                    $sender->sendMessage($this->prefix . Translation::translate("$this->strId@failure", $itemId, $itemDamage));
+                    $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('failure'), $itemId, $itemDamage));
                 } else {
                     $this->owner->query("DELETE FROM item_popup_list WHERE item_id = $itemId AND item_damage = $itemDamage;");
-                    $sender->sendMessage($this->prefix . Translation::translate("$this->strId@success", $itemId, $itemDamage));
+                    $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $itemId, $itemDamage));
                 }
                 return true;
             }

@@ -42,7 +42,7 @@ class SetSubCommand extends SubCommand{
                     WHERE item_id = $itemId AND item_damage = $itemDamage;
                 ");
                 }
-                $sender->sendMessage($this->prefix . Translation::translate("$this->strId@success", $itemId, $itemDamage, $popup));
+                $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $itemId, $itemDamage, $popup));
                 return true;
             }
         }

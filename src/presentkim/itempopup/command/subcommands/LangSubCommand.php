@@ -27,9 +27,9 @@ class LangSubCommand extends SubCommand{
                 $langfilename = $this->owner->getDataFolder() . "lang.yml";
                 Translation::loadFromResource($resource);
                 Translation::save($langfilename);
-                $sender->sendMessage($this->prefix . Translation::translate("$this->strId@success", $args[0]));
+                $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $args[0]));
             } else {
-                $sender->sendMessage($this->prefix . Translation::translate("$this->strId@failure", $args[0]));
+                $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('failure'), $args[0]));
             }
             return true;
         } else {

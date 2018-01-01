@@ -21,7 +21,7 @@ class SaveSubCommand extends SubCommand{
      */
     public function onCommand(CommandSender $sender, array $args) : bool{
         $this->owner->save();
-        $sender->sendMessage($this->prefix . Translation::translate("$this->strId@success"));
+        $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success')));
 
         return true;
     }
