@@ -9,7 +9,7 @@ use pocketmine\command\{
 };
 use presentkim\itempopup\ItemPopupMain as Plugin;
 use presentkim\itempopup\command\subcommands\{
-  SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand, HelpSubCommand
+  SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
 
 class CommandListener implements CommandExecutor{
@@ -33,7 +33,6 @@ class CommandListener implements CommandExecutor{
           new LangSubCommand($this->owner),
           new ReloadSubCommand($this->owner),
           new SaveSubCommand($this->owner),
-          new HelpSubCommand($this->owner),
         ];
     }
 
