@@ -6,7 +6,6 @@ use pocketmine\command\{
   Command, CommandExecutor, CommandSender
 };
 use presentkim\itempopup\{
-    /** @noinspection PhpUndefinedClassInspection */
   ItemPopupMain, util\Translation
 };
 use function presentkim\itempopup\util\{
