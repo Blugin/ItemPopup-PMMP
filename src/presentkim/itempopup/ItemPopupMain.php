@@ -12,7 +12,6 @@ use presentkim\itempopup\{
 use presentkim\itempopup\util\{
   Translation
 };
-use function presentkim\itempopup\util\translate;
 
 class ItemPopupMain extends PluginBase{
 
@@ -95,7 +94,7 @@ class ItemPopupMain extends PluginBase{
         $this->commands = [];
 
         // register commands
-        $this->registerCommand(new CommandListener(), translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', translate('command-itempopup@description'), translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
+        $this->registerCommand(new CommandListener(), Translation::translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', Translation::translate('command-itempopup@description'), Translation::translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
     }
 
     public function save() : void{

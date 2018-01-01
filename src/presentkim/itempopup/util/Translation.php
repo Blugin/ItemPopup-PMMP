@@ -68,7 +68,3 @@ class Translation{
         return null;
     }
 }
-
-function translate(string $strId, string ...$params) : string{
-    return Translation::translate($strId, ...$params);
-}
