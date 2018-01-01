@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\itempopup\listener;
+namespace presentkim\itempopup\command;
 
 use pocketmine\command\{
   Command, CommandExecutor, CommandSender
