@@ -8,13 +8,6 @@ class Translation{
     private static $lang = [];
 
     /**
-     *  static function for load global functions
-     */
-    public static function loadForFunc() : void{
-        \presentkim\itempopup\ItemPopupMain::getInstance()->getLogger()->debug('presentkim\itempopup\util\Translation loaded');
-    }
-
-    /**
      * @param string $filename
      */
     public static function load(string $filename) : void{

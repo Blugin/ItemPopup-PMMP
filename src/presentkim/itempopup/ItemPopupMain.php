@@ -10,7 +10,7 @@ use presentkim\itempopup\listener\{
   CommandListener, PlayerEventListener
 };
 use presentkim\itempopup\util\{
-  Translation, Utils
+  Translation
 };
 use function presentkim\itempopup\util\translate;
 
@@ -37,8 +37,8 @@ class ItemPopupMain extends PluginBase{
         self::$instance = $this;
 
         // load utils
-        Utils::loadForFunc();
-        Translation::loadForFunc();
+        $this->getServer()->getLoader()->loadClass('presentkim\itempopup\util\Utils');
+        $this->getServer()->getLoader()->loadClass('presentkim\itempopup\util\Translation');
 
         // init data.sqlite3
         if (!extension_loaded('sqlite3')) {
