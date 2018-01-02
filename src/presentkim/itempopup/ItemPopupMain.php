@@ -7,10 +7,7 @@ use pocketmine\command\{
 };
 use pocketmine\plugin\PluginBase;
 use presentkim\itempopup\{
-  listener\PlayerEventListener, command\CommandListener
-};
-use presentkim\itempopup\util\{
-  Translation
+  listener\PlayerEventListener, command\CommandListener,util\Translation
 };
 use function presentkim\itempopup\util\extensionLoad;
 
