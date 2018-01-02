@@ -61,8 +61,12 @@ class ItemPopupMain extends PluginBase{
     }
 
     public function reload() : void{
+        $dataFolder = $this->getDataFolder();
+        if (!file_exists($dataFolder)) {
+            mkdir($dataFolder, 0777, true);
+        }
+        
         // load db
-        @mkdir($this->getDataFolder());
         $this->query("
             CREATE TABLE IF NOT EXISTS item_popup_list (
                 item_id     INTEGER NOT NULL            CHECK(item_id >= 0),
