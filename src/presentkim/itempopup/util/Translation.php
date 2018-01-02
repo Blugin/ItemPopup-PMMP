@@ -30,7 +30,7 @@ class Translation{
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-        return yaml_emit_file($filename, self::$lang);
+        return yaml_emit_file($filename, self::$lang, YAML_UTF8_ENCODING);
     }
 
     /**
