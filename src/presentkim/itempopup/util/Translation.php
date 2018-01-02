@@ -26,7 +26,10 @@ class Translation{
      *              success.
      */
     public static function save(string $filename) : bool{
-        @mkdir(dirname($filename), 0755, true);
+        $path = dirname($filename);
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
         return yaml_emit_file($filename, self::$lang);
     }
 

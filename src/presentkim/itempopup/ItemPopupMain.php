@@ -40,8 +40,11 @@ class ItemPopupMain extends PluginBase{
 
         // init data.sqlite3
         extensionLoad('sqlite3');
-        @mkdir($this->getDataFolder());
-        $this->db = new \SQLITE3($this->getDataFolder() . "data.sqlite3");
+        $dataFolder = $this->getDataFolder();
+        if (!file_exists($dataFolder)) {
+            mkdir($dataFolder, 0777, true);
+        }
+        $this->db = new \SQLITE3($dataFolder . 'data.sqlite3');
     }
 
     public function onEnable() : void{
