@@ -45,7 +45,7 @@ class ItemPopupMain extends PluginBase{
     }
 
     public function onEnable() : void{
-        $this->reload();
+        $this->load();
 
         // register event listeners
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
@@ -60,7 +60,7 @@ class ItemPopupMain extends PluginBase{
         return $this->db->query($query);
     }
 
-    public function reload() : void{
+    public function load() : void{
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);

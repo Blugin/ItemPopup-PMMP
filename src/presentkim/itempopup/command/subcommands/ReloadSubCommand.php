@@ -20,7 +20,7 @@ class ReloadSubCommand extends SubCommand{
      * @return bool
      */
     public function onCommand(CommandSender $sender, array $args) : bool{
-        $this->owner->reload();
+        $this->owner->load();
         $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success')));
 
         return true;
