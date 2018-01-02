@@ -78,7 +78,7 @@ class ItemPopupMain extends PluginBase{
         ");
 
         // load lang
-        $langfilename = $this->getDataFolder() . "lang.yml";
+        $langfilename = $dataFolder . 'lang.yml';
         if (!file_exists($langfilename)) {
             Translation::loadFromResource($this->getResource('lang/eng.yml'));
             Translation::save($langfilename);
@@ -103,7 +103,7 @@ class ItemPopupMain extends PluginBase{
         }
 
         // save lang
-        $langfilename = $this->getDataFolder() . "lang.yml";
+        $langfilename = $dataFolder . 'lang.yml';
         if (!file_exists($langfilename)) {
             Translation::loadFromResource($this->getResource('lang/eng.yml'));
             Translation::save($langfilename);
@@ -126,7 +126,7 @@ class ItemPopupMain extends PluginBase{
         $command->setExecutor($executor);
         $command->setPermission($permission);
         $command->setDescription($description);
-        $command->setUsage($usageMessage ?? ("/" . $name));
+        $command->setUsage($usageMessage ?? ('/' . $name));
         if (is_array($aliases)) {
             $command->setAliases($aliases);
         }
