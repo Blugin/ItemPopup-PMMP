@@ -36,7 +36,6 @@ class ItemPopupMain extends PluginBase{
 
         // load utils
         $this->getServer()->getLoader()->loadClass('presentkim\itempopup\util\Utils');
-        $this->getServer()->getLoader()->loadClass('presentkim\itempopup\util\Translation');
 
         // init data.sqlite3
         extensionLoad('sqlite3');
