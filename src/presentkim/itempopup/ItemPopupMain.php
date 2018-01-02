@@ -65,7 +65,7 @@ class ItemPopupMain extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
-        
+
         // load db
         $this->query("
             CREATE TABLE IF NOT EXISTS item_popup_list (
@@ -97,6 +97,11 @@ class ItemPopupMain extends PluginBase{
     }
 
     public function save() : void{
+        $dataFolder = $this->getDataFolder();
+        if (!file_exists($dataFolder)) {
+            mkdir($dataFolder, 0777, true);
+        }
+
         // save lang
         $langfilename = $this->getDataFolder() . "lang.yml";
         if (!file_exists($langfilename)) {
