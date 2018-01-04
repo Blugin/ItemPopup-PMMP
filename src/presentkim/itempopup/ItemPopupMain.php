@@ -102,13 +102,7 @@ class ItemPopupMain extends PluginBase{
         }
 
         // save lang
-        $langfilename = $dataFolder . 'lang.yml';
-        if (!file_exists($langfilename)) {
-            Translation::loadFromResource($this->getResource('lang/eng.yml'));
-            Translation::save($langfilename);
-        } else {
-            Translation::load($langfilename);
-        }
+        Translation::save($dataFolder . 'lang.yml');
     }
 
     /**
