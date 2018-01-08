@@ -22,10 +22,12 @@ class ListSubCommand extends SubCommand{
      */
     public function onCommand(CommandSender $sender, array $args){
         $list = [];
-        $results = $this->owner->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
-        while ($row = $results->fetchArray(SQLITE3_NUM)) {
-            $list[] = $row;
+        foreach ($this->owner->getConfig()->getAll() as $key => $value) {
+            $items = explode(':', $key);
+            $items[] = $value;
+            $list[] = $items;
         }
+
         $max = ceil(sizeof($list) / 5);
         $page = min($max, (isset($args[0]) ? toInt($args[0], 1, function (int $i){
               return $i > 0 ? 1 : -1;

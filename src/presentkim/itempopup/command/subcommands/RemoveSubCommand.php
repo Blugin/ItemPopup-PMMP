@@ -29,11 +29,12 @@ class RemoveSubCommand extends SubCommand{
                 return $i >= -1;
             });
             if ($itemId !== null && $itemDamage !== null) {
-                $result = $this->owner->query("SELECT item_id FROM item_popup_list WHERE item_id = $itemId AND item_damage = $itemDamage;")->fetchArray(SQLITE3_NUM)[0];
-                if (!$result) { // When first query result is not exists
+                $config = $this->owner->getConfig();
+                $key = "{$itemId}:{$itemDamage}";
+                if (!$config->exists($key)) {
                     $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('failure'), $itemId, $itemDamage));
                 } else {
-                    $this->owner->query("DELETE FROM item_popup_list WHERE item_id = $itemId AND item_damage = $itemDamage;");
+                    $config->remove($key);
                     $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $itemId, $itemDamage));
                 }
                 return true;

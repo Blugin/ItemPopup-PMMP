@@ -20,7 +20,7 @@ class SetSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args) {
+    public function onCommand(CommandSender $sender, array $args){
         if (isset($args[2])) {
             $itemId = toInt($args[0], null, function (int $i){
                 return $i >= 0;
@@ -30,18 +30,7 @@ class SetSubCommand extends SubCommand{
             });
             if ($itemId !== null && $itemDamage !== null) {
                 $popup = implode(' ', array_slice($args, 2));
-                $result = $this->owner->query("SELECT item_id FROM item_popup_list WHERE item_id = $itemId AND item_damage = $itemDamage;")->fetchArray(SQLITE3_NUM)[0];
-                if (!$result) { // When first query result is not exists
-                    $this->owner->query("INSERT INTO item_popup_list VALUES ($itemId, $itemDamage, '$popup');");
-                } else {
-                    $this->owner->query("
-                        UPDATE item_popup_list
-                            set item_id = $itemId,
-                            item_damage = $itemDamage,
-                            item_popup = '$popup'
-                        WHERE item_id = $itemId AND item_damage = $itemDamage;
-                    ");
-                }
+                $this->owner->getConfig()->set("{$itemId}:{$itemDamage}", $popup);
                 $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $itemId, $itemDamage, $popup));
                 return true;
             }
