@@ -20,7 +20,7 @@ class ListSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args) : bool{
+    public function onCommand(CommandSender $sender, array $args){
         $list = [];
         $results = $this->owner->query("SELECT * FROM item_popup_list ORDER BY item_id ASC, item_damage ASC;");
         while ($row = $results->fetchArray(SQLITE3_NUM)) {

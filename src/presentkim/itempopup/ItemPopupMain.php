@@ -23,11 +23,11 @@ class ItemPopupMain extends PluginBase{
     private $commands = [];
 
     /** @return self */
-    public static function getInstance() : self{
+    public static function getInstance(){
         return self::$instance;
     }
 
-    public function onLoad() : void{
+    public function onLoad(){
         if (self::$instance === null) {
             // register instance
             self::$instance = $this;
@@ -45,7 +45,7 @@ class ItemPopupMain extends PluginBase{
         $this->db = new \SQLITE3($dataFolder . 'data.sqlite3');
     }
 
-    public function onEnable() : void{
+    public function onEnable(){
         $this->load();
 
         // register event listeners
@@ -57,11 +57,11 @@ class ItemPopupMain extends PluginBase{
      *
      * @return \SQLite3Result
      */
-    public function query(string $query) : \SQLite3Result{
+    public function query(string $query){
         return $this->db->query($query);
     }
 
-    public function load() : void{
+    public function load(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -97,7 +97,7 @@ class ItemPopupMain extends PluginBase{
         $this->registerCommand(new CommandListener($this), Translation::translate('command-itempopup'), 'ItemPopup', 'itempopup.cmd', Translation::translate('command-itempopup@description'), Translation::translate('command-itempopup@usage'), Translation::getArray('command-itempopup@aliases'));
     }
 
-    public function save() : void{
+    public function save(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -116,7 +116,7 @@ class ItemPopupMain extends PluginBase{
      * @param null            $usageMessage
      * @param array|null      $aliases
      */
-    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null) : void{
+    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null){
         $command = new PluginCommand($name, $this);
         $command->setExecutor($executor);
         $command->setPermission($permission);

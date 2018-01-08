@@ -24,7 +24,7 @@ class PlayerEventListener implements Listener{
     }
 
     /** @param PlayerItemHeldEvent $event */
-    public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event) : void{
+    public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event){
         $item = $event->getItem();
         $player = $event->getPlayer();
         $playerName = $player->getName();
@@ -43,7 +43,7 @@ class PlayerEventListener implements Listener{
     }
 
     /** @param BlockPlaceEvent $event */
-    public function onBlockPlaceEvent(BlockPlaceEvent $event) : void{
+    public function onBlockPlaceEvent(BlockPlaceEvent $event){
         $this->ignore[$event->getPlayer()->getName()] = $event->getItem();
     }
 }
