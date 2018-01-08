@@ -62,15 +62,6 @@ class ItemPopupMain extends PluginBase{
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
-    /**
-     * @param string $query
-     *
-     * @return \SQLite3Result
-     */
-    public function query(string $query){
-        return $this->db->query($query);
-    }
-
     public function load(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
@@ -78,15 +69,7 @@ class ItemPopupMain extends PluginBase{
         }
 
         // load db
-        $this->query("
-            CREATE TABLE IF NOT EXISTS item_popup_list (
-                item_id     INTEGER NOT NULL            CHECK(item_id >= 0),
-                item_damage INTEGER NOT NULL DEFAULT -1 CHECK(item_damage >= -1),
-                item_popup  TEXT    NOT NULL,
-                PRIMARY KEY (item_id, item_damage)
-            );
-            COMMIT;
-        ");
+        $this->reloadConfig();
 
         // load lang
         $langfilename = $dataFolder . 'lang.yml';
@@ -112,6 +95,9 @@ class ItemPopupMain extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
+
+        // save db
+        $this->saveConfig();
 
         // save lang
         Translation::save($dataFolder . 'lang.yml');
