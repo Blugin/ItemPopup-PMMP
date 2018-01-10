@@ -59,6 +59,10 @@ class ItemPopupMain extends PluginBase{
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
+    public function onDisable(){
+        $this->save();
+    }
+
     public function load(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
