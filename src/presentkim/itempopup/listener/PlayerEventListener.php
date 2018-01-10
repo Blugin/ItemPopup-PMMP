@@ -5,7 +5,7 @@ namespace presentkim\itempopup\listener;
 use pocketmine\event\{
   block\BlockPlaceEvent, player\PlayerItemHeldEvent, Listener
 };
-use presentkim\itempopup\ItemPopupMain;
+use presentkim\itempopup\ItemPopupMain as Plugin;
 
 class PlayerEventListener implements Listener{
 
@@ -16,11 +16,11 @@ class PlayerEventListener implements Listener{
      */
     private $ignore = [];
 
-    /** @var ItemPopupMain */
+    /** @var Plugin */
     private $owner = null;
 
     public function __construct(){
-        $this->owner = ItemPopupMain::getInstance();
+        $this->owner = Plugin::getInstance();
     }
 
     /** @param PlayerItemHeldEvent $event */
