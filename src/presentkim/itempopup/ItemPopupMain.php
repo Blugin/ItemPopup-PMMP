@@ -16,9 +16,6 @@ class ItemPopupMain extends PluginBase{
     /** @var self */
     private static $instance = null;
 
-    /** @var \Sqlite3 */
-    private $db;
-
     /** @var PluginCommand[] */
     private $commands = [];
 
