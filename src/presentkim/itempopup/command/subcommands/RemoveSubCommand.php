@@ -4,19 +4,19 @@ namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use presentkim\itempopup\{
-  ItemPopupMain as Plugin, util\Translation, command\SubCommand
+  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand
 };
 use function presentkim\itempopup\util\toInt;
 
 class RemoveSubCommand extends SubCommand{
 
-    public function __construct(Plugin $owner){
-        parent::__construct($owner, Translation::translate('prefix'), 'command-itempopup-remove', 'itempopup.remove.cmd');
+    public function __construct(PoolCommand $owner){
+        parent::__construct($owner, 'remove');
     }
 
     /**
      * @param CommandSender $sender
-     * @param array         $args
+     * @param String[]      $args
      *
      * @return bool
      */
@@ -32,10 +32,10 @@ class RemoveSubCommand extends SubCommand{
                 $config = $this->owner->getConfig();
                 $key = "{$itemId}:{$itemDamage}";
                 if (!$config->exists($key)) {
-                    $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('failure'), $itemId, $itemDamage));
+                    $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $itemId, $itemDamage));
                 } else {
                     $config->remove($key);
-                    $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $itemId, $itemDamage));
+                    $sender->sendMessage(Plugin::$prefix . $this->translate('success', $itemId, $itemDamage));
                 }
                 return true;
             }
