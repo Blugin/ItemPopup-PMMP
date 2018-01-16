@@ -9,22 +9,23 @@ permissions:
   itempopup.cmd:
     description:  ItemPopup main command
     default:      op
-  itempopup.set.cmd:
-    description:  ItemPopup set command
-    default:      op
-  itempopup.remove.cmd:
-    description:  ItemPopup remove command
-    default:      op
-  itempopup.list.cmd:
-    description:  ItemPopup list command
-    default:      op
-  itempopup.lang.cmd:
-    description:  ItemPopup lang command
-    default:      op
-  itempopup.reload.cmd:
-    description:  ItemPopup reload command
-    default:      op
-  itempopup.save.cmd:
-    description:  ItemPopup save command
-    default:      op
+    children:
+      itempopup.cmd.set:
+        description:  ItemPopup command - set
+        default:      op
+      itempopup.cmd.remove:
+        description:  ItemPopup command - remove
+        default:      op
+      itempopup.cmd.list:
+        description:  ItemPopup command - list
+        default:      op
+      itempopup.cmd.lang:
+        description:  ItemPopup command - lang
+        default:      op
+      itempopup.cmd.reload:
+        description:  ItemPopup command - reload
+        default:      op
+      itempopup.cmd.save:
+        description:  ItemPopup command - save
+        default:      op
 ...
