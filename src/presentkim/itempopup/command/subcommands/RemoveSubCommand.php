@@ -29,7 +29,7 @@ class RemoveSubCommand extends SubCommand{
                 return $i >= -1;
             });
             if ($itemId !== null && $itemDamage !== null) {
-                $config = $this->owner->getConfig();
+                $config = $this->plugin->getConfig();
                 $key = "{$itemId}:{$itemDamage}";
                 if (!$config->exists($key)) {
                     $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $itemId, $itemDamage));

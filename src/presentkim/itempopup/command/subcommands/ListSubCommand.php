@@ -22,7 +22,7 @@ class ListSubCommand extends SubCommand{
      */
     public function onCommand(CommandSender $sender, array $args){
         $list = [];
-        foreach ($this->owner->getConfig()->getAll() as $key => $value) {
+        foreach ($this->plugin->getConfig()->getAll() as $key => $value) {
             $items = explode(':', $key);
             $items[] = $value;
             $list[] = $items;

@@ -30,7 +30,7 @@ class SetSubCommand extends SubCommand{
             });
             if ($itemId !== null && $itemDamage !== null) {
                 $popup = implode(' ', array_slice($args, 2));
-                $this->owner->getConfig()->set("{$itemId}:{$itemDamage}", $popup);
+                $this->plugin->getConfig()->set("{$itemId}:{$itemDamage}", $popup);
                 $sender->sendMessage(Plugin::$prefix . $this->translate('success', $itemId, $itemDamage, $popup));
                 return true;
             }
