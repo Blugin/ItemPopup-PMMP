@@ -9,7 +9,6 @@ use pocketmine\plugin\PluginBase;
 use presentkim\itempopup\{
   listener\PlayerEventListener, command\CommandListener, util\Translation
 };
-use function presentkim\itempopup\util\extensionLoad;
 
 class ItemPopupMain extends PluginBase{
 
@@ -29,23 +28,6 @@ class ItemPopupMain extends PluginBase{
             self::$instance = $this;
             $this->getServer()->getLoader()->loadClass('presentkim\itempopup\util\Utils');
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
-
-            $sqlite3Path = "{$this->getDataFolder()}data.sqlite3";
-            if (file_exists($sqlite3Path)) {
-                extensionLoad('sqlite3');
-
-                $db = new \SQLITE3($sqlite3Path);
-                $results = $db->query("SELECT * FROM item_popup_list;");
-                $config = $this->getConfig();
-                while ($result = $results->fetchArray(SQLITE3_NUM)) {
-                    $key = mb_convert_encoding("{$result[0]}:{$result[1]}", "ASCII", "UTF-8");
-                    $value = mb_convert_encoding($result[2], "ASCII", "UTF-8");
-                    $config->set($key, $value);
-                }
-                $this->saveConfig();
-                unset($db, $results, $result);
-                unlink($sqlite3Path);
-            }
         }
     }
 
