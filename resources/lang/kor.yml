@@ -1,7 +1,7 @@
 ---
 prefix: "[ItemPopup] "
 
-command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다."
+command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다"
 
 command-itempopup: "itempopup"
 command-itempopup@usage: "/itempopup <set | remove | list | lang | reload | save>"
@@ -10,13 +10,13 @@ command-itempopup@aliases: ["ip"]
 
 command-itempopup-set: "set"
 command-itempopup-set@usage: "/itempopup Set <아이템ID> <아이템데미지> <팝업>"
-command-itempopup-set@success: "{%0}:{%1}의 팝업이 {%2}로 설정되었습니다."
+command-itempopup-set@success: "{%0}:{%1}의 팝업이 {%2}로 설정되었습니다"
 command-itempopup-set@aliases: ["s"]
 
 command-itempopup-remove: "remove"
 command-itempopup-remove@usage: "/itempopup Remove <아이템ID> <아이템데미지>"
-command-itempopup-remove@success: "{%0}:{%1}의 팝업이 제거되었습니다."
-command-itempopup-remove@failure: "{%0}:{%1}의 팝업은 설정되지 않았습니다."
+command-itempopup-remove@success: "{%0}:{%1}의 팝업이 제거되었습니다"
+command-itempopup-remove@failure: "{%0}:{%1}의 팝업은 설정되지 않았습니다"
 command-itempopup-remove@aliases: ["r"]
 
 command-itempopup-list: "list"
@@ -27,17 +27,17 @@ command-itempopup-list@aliases: ["l"]
 
 command-itempopup-lang: "lang"
 command-itempopup-lang@usage: "/itempopup Lang <언어명>"
-command-itempopup-lang@success: "{%0}언어 파일을 불러왔습니다."
-command-itempopup-lang@failure: "{%0}는 잘못된 언어명입니다."
+command-itempopup-lang@success: "{%0}언어 파일을 불러왔습니다"
+command-itempopup-lang@failure: "{%0}는 잘못된 언어명입니다"
 command-itempopup-lang@aliases: ["language"]
 
 command-itempopup-reload: "reload"
 command-itempopup-reload@usage: "/itempopup Reload"
-command-itempopup-reload@success: "모든 데이터를 불러왔습니다."
+command-itempopup-reload@success: "모든 데이터를 불러왔습니다"
 command-itempopup-reload@aliases: ["rl"]
 
 command-itempopup-save: "save"
 command-itempopup-save@usage: "/itempopup Save"
-command-itempopup-save@success: "모든 데이터를 저장했습니다."
+command-itempopup-save@success: "모든 데이터를 저장했습니다"
 command-itempopup-save@aliases: ["sv"]
 ...
