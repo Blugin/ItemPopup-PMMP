@@ -28,7 +28,7 @@ class ListSubCommand extends SubCommand{
             $list[] = $items;
         }
 
-        $max = ceil(sizeof($list) / 5);
+        $max = ceil(count($list) / 5);
         $page = min($max, (isset($args[0]) ? toInt($args[0], 1, function (int $i){
               return $i > 0 ? 1 : -1;
           }) : 1) - 1);

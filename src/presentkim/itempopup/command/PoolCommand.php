@@ -2,7 +2,6 @@
 
 namespace presentkim\itempopup\command;
 
-
 use pocketmine\command\{
   Command, CommandExecutor, CommandSender, PluginCommand
 };
