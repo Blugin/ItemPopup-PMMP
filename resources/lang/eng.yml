@@ -4,7 +4,8 @@ prefix: "[ItemPopup] "
 command-generic-failure@permission : "You do not have permission to use this command"
 
 command-itempopup: "itempopup"
-command-itempopup@usage: "/itempopup <set | remove | list | lang | reload | save>"
+command-itempopup@usage: "/itempopup <{%0}>"
+command-itempopup@usage-separator: " | "
 command-itempopup@description: "Main command of ItemPopup"
 command-itempopup@aliases: ["ip"]
 
