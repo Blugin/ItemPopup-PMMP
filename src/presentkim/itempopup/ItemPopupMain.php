@@ -3,12 +3,12 @@
 namespace presentkim\itempopup;
 
 use pocketmine\plugin\PluginBase;
-use presentkim\itempopup\listener\PlayerEventListener;
-use presentkim\itempopup\util\Translation;
 use presentkim\itempopup\command\PoolCommand;
 use presentkim\itempopup\command\subcommands\{
   SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
+use presentkim\itempopup\listener\PlayerEventListener;
+use presentkim\itempopup\util\Translation;
 
 class ItemPopupMain extends PluginBase{
 

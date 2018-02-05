@@ -3,9 +3,11 @@
 namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\{
-  command\PoolCommand, ItemPopupMain as Plugin, util\Translation, command\SubCommand
+use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\command\{
+  PoolCommand, SubCommand
 };
+use presentkim\itempopup\util\Translation;
 
 class LangSubCommand extends SubCommand{
 
@@ -32,7 +34,7 @@ class LangSubCommand extends SubCommand{
                 fclose($fp);
                 Translation::loadFromContents($contents);
                 $this->plugin->reloadCommand();
-                
+
                 $sender->sendMessage(Plugin::$prefix . $this->translate('success', $args[0]));
             } else {
                 $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $args[0]));

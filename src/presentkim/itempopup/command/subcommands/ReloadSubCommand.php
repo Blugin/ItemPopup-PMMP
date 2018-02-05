@@ -3,8 +3,9 @@
 namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\{
-  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand
+use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\command\{
+  PoolCommand, SubCommand
 };
 
 class ReloadSubCommand extends SubCommand{

@@ -2,9 +2,9 @@
 
 namespace presentkim\itempopup\listener;
 
-use pocketmine\event\{
-  block\BlockPlaceEvent, player\PlayerItemHeldEvent, Listener
-};
+use pocketmine\event\Listener;
+use pocketmine\event\block\BlockPlaceEvent;
+use pocketmine\event\player\PlayerItemHeldEvent;
 use presentkim\itempopup\ItemPopupMain as Plugin;
 
 class PlayerEventListener implements Listener{

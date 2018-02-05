@@ -3,9 +3,11 @@
 namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\{
-  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand, util\Utils
+use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\command\{
+  PoolCommand, SubCommand
 };
+use presentkim\itempopup\util\Utils;
 
 class ListSubCommand extends SubCommand{
 

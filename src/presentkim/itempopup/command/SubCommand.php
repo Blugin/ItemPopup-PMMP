@@ -3,8 +3,9 @@
 namespace presentkim\itempopup\command;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\{
-  ItemPopupMain as Plugin, util\Translation, util\Utils
+use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\util\{
+  Translation, Utils
 };
 
 abstract class SubCommand{
