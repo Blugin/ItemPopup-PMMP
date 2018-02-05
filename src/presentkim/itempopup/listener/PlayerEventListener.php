@@ -5,7 +5,7 @@ namespace presentkim\itempopup\listener;
 use pocketmine\event\Listener;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
-use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\ItemPopup as Plugin;
 
 class PlayerEventListener implements Listener{
 

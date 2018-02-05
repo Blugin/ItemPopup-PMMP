@@ -3,7 +3,7 @@
 namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\ItemPopup as Plugin;
 use presentkim\itempopup\command\{
   PoolCommand, SubCommand
 };

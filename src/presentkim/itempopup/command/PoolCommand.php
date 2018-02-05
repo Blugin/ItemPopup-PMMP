@@ -5,7 +5,7 @@ namespace presentkim\itempopup\command;
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender, ConsoleCommandSender
 };
-use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\ItemPopup as Plugin;
 use presentkim\itempopup\util\Translation;
 
 class PoolCommand extends PluginCommand implements CommandExecutor{

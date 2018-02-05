@@ -2,7 +2,7 @@
 
 namespace presentkim\itempopup\util;
 
-use presentkim\itempopup\ItemPopupMain as Plugin;
+use presentkim\itempopup\ItemPopup as Plugin;
 
 class Translation{
 

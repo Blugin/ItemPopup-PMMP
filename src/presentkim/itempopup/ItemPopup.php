@@ -10,7 +10,7 @@ use presentkim\itempopup\command\subcommands\{
 use presentkim\itempopup\listener\PlayerEventListener;
 use presentkim\itempopup\util\Translation;
 
-class ItemPopupMain extends PluginBase{
+class ItemPopup extends PluginBase{
 
     /** @var self */
     private static $instance = null;
