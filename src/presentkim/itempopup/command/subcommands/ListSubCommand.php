@@ -20,7 +20,7 @@ class ListSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args){
+    public function onCommand(CommandSender $sender, array $args) : bool{
         $list = [];
         foreach ($this->plugin->getConfig()->getAll() as $key => $value) {
             $items = explode(':', $key);

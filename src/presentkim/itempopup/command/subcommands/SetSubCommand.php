@@ -20,7 +20,7 @@ class SetSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args){
+    public function onCommand(CommandSender $sender, array $args) : bool{
         if (isset($args[2])) {
             $itemId = toInt($args[0], null, function (int $i){
                 return $i >= 0;
