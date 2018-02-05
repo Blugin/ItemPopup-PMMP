@@ -4,9 +4,8 @@ namespace presentkim\itempopup\command;
 
 use pocketmine\command\CommandSender;
 use presentkim\itempopup\{
-  ItemPopupMain as Plugin, util\Translation
+  ItemPopupMain as Plugin, util\Translation, util\Utils
 };
-use function presentkim\itempopup\util\in_arrayi;
 
 abstract class SubCommand{
 
@@ -96,7 +95,7 @@ abstract class SubCommand{
      * @return bool
      */
     public function checkLabel(string $label) : bool{
-        return strcasecmp($label, $this->label) === 0 || $this->aliases && in_arrayi($label, $this->aliases);
+        return strcasecmp($label, $this->label) === 0 || $this->aliases && Utils::in_arrayi($label, $this->aliases);
     }
 
     public function updateTranslation() : void{

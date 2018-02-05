@@ -4,9 +4,8 @@ namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use presentkim\itempopup\{
-  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand
+  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand, util\Utils
 };
-use function presentkim\itempopup\util\toInt;
 
 class SetSubCommand extends SubCommand{
 
@@ -22,10 +21,10 @@ class SetSubCommand extends SubCommand{
      */
     public function onCommand(CommandSender $sender, array $args) : bool{
         if (isset($args[2])) {
-            $itemId = toInt($args[0], null, function (int $i){
+            $itemId = Utils::toInt($args[0], null, function (int $i){
                 return $i >= 0;
             });
-            $itemDamage = toInt($args[1], null, function (int $i){
+            $itemDamage = Utils::toInt($args[1], null, function (int $i){
                 return $i >= -1;
             });
             if ($itemId !== null && $itemDamage !== null) {

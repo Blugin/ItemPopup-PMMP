@@ -4,9 +4,8 @@ namespace presentkim\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use presentkim\itempopup\{
-  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand
+  command\PoolCommand, ItemPopupMain as Plugin, command\SubCommand, util\Utils
 };
-use function presentkim\itempopup\util\toInt;
 
 class ListSubCommand extends SubCommand{
 
@@ -29,7 +28,7 @@ class ListSubCommand extends SubCommand{
         }
 
         $max = ceil(count($list) / 5);
-        $page = min($max, (isset($args[0]) ? toInt($args[0], 1, function (int $i){
+        $page = min($max, (isset($args[0]) ? Utils::toInt($args[0], 1, function (int $i){
               return $i > 0 ? 1 : -1;
           }) : 1) - 1);
         $sender->sendMessage(Plugin::$prefix . $this->translate('head', $page + 1, $max));
