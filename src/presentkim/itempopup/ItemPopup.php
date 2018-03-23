@@ -12,14 +12,14 @@ use presentkim\itempopup\util\Translation;
 
 class ItemPopup extends PluginBase{
 
-    /** @var self */
+    /** @var ItemPopup */
     private static $instance = null;
 
     /** @var string */
     public static $prefix = '';
 
-    /** @return self */
-    public static function getInstance() : self{
+    /** @return ItemPopup */
+    public static function getInstance() : ItemPopup{
         return self::$instance;
     }
 
