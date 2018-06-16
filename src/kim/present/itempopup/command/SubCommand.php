@@ -1,10 +1,10 @@
 <?php
 
-namespace presentkim\itempopup\command;
+namespace kim\present\itempopup\command;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\ItemPopup as Plugin;
-use presentkim\itempopup\util\{
+use kim\present\itempopup\ItemPopup as Plugin;
+use kim\present\itempopup\util\{
   Translation, Utils
 };
 

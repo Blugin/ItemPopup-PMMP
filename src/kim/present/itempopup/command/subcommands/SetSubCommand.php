@@ -1,13 +1,13 @@
 <?php
 
-namespace presentkim\itempopup\command\subcommands;
+namespace kim\present\itempopup\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\itempopup\ItemPopup as Plugin;
-use presentkim\itempopup\command\{
+use kim\present\itempopup\ItemPopup as Plugin;
+use kim\present\itempopup\command\{
   PoolCommand, SubCommand
 };
-use presentkim\itempopup\util\Utils;
+use kim\present\itempopup\util\Utils;
 
 class SetSubCommand extends SubCommand{
 

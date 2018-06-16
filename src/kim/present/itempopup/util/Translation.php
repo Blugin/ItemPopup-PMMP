@@ -1,8 +1,8 @@
 <?php
 
-namespace presentkim\itempopup\util;
+namespace kim\present\itempopup\util;
 
-use presentkim\itempopup\ItemPopup as Plugin;
+use kim\present\itempopup\ItemPopup as Plugin;
 
 class Translation{
 

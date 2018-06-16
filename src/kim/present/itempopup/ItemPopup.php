@@ -1,14 +1,14 @@
 <?php
 
-namespace presentkim\itempopup;
+namespace kim\present\itempopup;
 
 use pocketmine\plugin\PluginBase;
-use presentkim\itempopup\command\PoolCommand;
-use presentkim\itempopup\command\subcommands\{
+use kim\present\itempopup\command\PoolCommand;
+use kim\present\itempopup\command\subcommands\{
   SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
-use presentkim\itempopup\listener\PlayerEventListener;
-use presentkim\itempopup\util\Translation;
+use kim\present\itempopup\listener\PlayerEventListener;
+use kim\present\itempopup\util\Translation;
 
 class ItemPopup extends PluginBase{
 

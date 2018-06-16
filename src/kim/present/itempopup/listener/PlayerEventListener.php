@@ -1,11 +1,11 @@
 <?php
 
-namespace presentkim\itempopup\listener;
+namespace kim\present\itempopup\listener;
 
 use pocketmine\event\Listener;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
-use presentkim\itempopup\ItemPopup as Plugin;
+use kim\present\itempopup\ItemPopup as Plugin;
 
 class PlayerEventListener implements Listener{
 
