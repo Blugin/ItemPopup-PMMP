@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\itempopup\util;
+namespace kim\present\itempopup\util;
 
 class Utils{
 

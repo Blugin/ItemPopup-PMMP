@@ -2,9 +2,9 @@
 
 [![icon/192x192](assets/icon/192x192.png?raw=true)]()
 
-[![License](https://img.shields.io/github/license/PMMPPlugin/ItemPopup.svg?label=License)](LICENSE)
-[![Release](https://img.shields.io/github/release/PMMPPlugin/ItemPopup.svg?label=Release)](https://github.com/PMMPPlugin/ItemPopup/releases/latest)
-[![Download](https://img.shields.io/github/downloads/PMMPPlugin/ItemPopup/total.svg?label=Download)](https://github.com/PMMPPlugin/ItemPopup/releases/latest)
+[![License](https://img.shields.io/github/license/PresentKim/ItemPopup-PMMP.svg?label=License)](LICENSE)
+[![Release](https://img.shields.io/github/release/PresentKim/ItemPopup-PMMP.svg?label=Release)](https://github.com/PresentKim/ItemPopup-PMMP/releases/latest)
+[![Download](https://img.shields.io/github/downloads/PresentKim/ItemPopup-PMMP/total.svg?label=Download)](https://github.com/PresentKim/ItemPopup-PMMP/releases/latest)
 
 
 A plugin show custom item popup for PocketMine-MP
