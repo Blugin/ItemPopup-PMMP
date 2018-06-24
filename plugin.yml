@@ -2,7 +2,7 @@
 name:             ItemPopup
 main:             kim\present\itempopup\ItemPopup
 version:          1.2.1
-api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11]
+api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11, 4.0.0]
 author:           PresentKim
 website:          https://github.com/PresentKim/ItemPopup-PMMP
 description:      A plugin show custom item popup
