@@ -26,14 +26,20 @@ class ItemPopup extends PluginBase{
 	/** @var PoolCommand */
 	private $command;
 
-	public function onLoad() : void{
+	/**
+	 * Called when the plugin is loaded, before calling onEnable()
+	 */
+	protected function onLoad() : void{
 		if(self::$instance === null){
 			self::$instance = $this;
 			Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
 		}
 	}
 
-	public function onEnable() : void{
+	/**
+	 * Called when the plugin is enabled
+	 */
+	protected function onEnable() : void{
 		$this->load();
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
 	}
