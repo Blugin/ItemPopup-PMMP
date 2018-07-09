@@ -29,7 +29,7 @@ class ItemPopup extends PluginBase{
 	/**
 	 * Called when the plugin is loaded, before calling onEnable()
 	 */
-	protected function onLoad() : void{
+	public function onLoad() : void{
 		if(self::$instance === null){
 			self::$instance = $this;
 			Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
@@ -39,11 +39,15 @@ class ItemPopup extends PluginBase{
 	/**
 	 * Called when the plugin is enabled
 	 */
-	protected function onEnable() : void{
+	public function onEnable() : void{
 		$this->load();
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
 	}
 
+	/**
+	 * Called when the plugin is disabled
+	 * Use this to free open things and finish actions
+	 */
 	public function onDisable(){
 		$this->save();
 	}
