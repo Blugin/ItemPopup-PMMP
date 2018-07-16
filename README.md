@@ -1,37 +1,10 @@
-[![Telegram](https://img.shields.io/badge/Telegram-PresentKim-blue.svg?logo=telegram)](https://t.me/PresentKim)
-
-[![icon/192x192](assets/icon/192x192.png?raw=true)]()
-
-[![License](https://img.shields.io/github/license/PresentKim/ItemPopup-PMMP.svg?label=License)](LICENSE)
-[![Release](https://img.shields.io/github/release/PresentKim/ItemPopup-PMMP.svg?label=Release)](https://github.com/PresentKim/ItemPopup-PMMP/releases/latest)
-[![Download](https://img.shields.io/github/downloads/PresentKim/ItemPopup-PMMP/total.svg?label=Download)](https://github.com/PresentKim/ItemPopup-PMMP/releases/latest)
-
-
-A plugin show custom item popup for PocketMine-MP
-
-## Command
-Main command : `/itempopup <set | remove | list | lang | reload | save>`
-
-| subcommand | arguments                             | description            |
-| ---------- | ------------------------------------- | ---------------------- |
-| Set        | \<item id\> \<item damage\> \<popup\> | Set item's popup       |
-| Remove     | \<item id\> \<item damage\>           | Remove item's popup    |
-| List       | \[page\]                              | Show item popup list   |
-| Lang       | \<language prefix\>                   | Load default lang file |
-| Reload     |                                       | Reload all data        |
-| Save       |                                       | Save all data          |
-
-
-
-
-## Permission
-| permission           | default | description       |
-| -------------------- | ------- | ----------------- |
-| itempopup.cmd        | OP      | main command      |
-|                      |         |                   |
-| itempopup.cmd.set    | OP      | set  subcommand   |
-| itempopup.cmd.remove | OP      | remove subcommand |
-| itempopup.cmd.list   | OP      | list subcommand   |
-| itempopup.cmd.lang   | OP      | lang subcommand   |
-| itempopup.cmd.reload | OP      | reload subcommand |
-| itempopup.cmd.save   | OP      | save subcommand   |
+# <img src="./assets/icon/index.svg" height="50" width="50"> ItemPopup  
+__A plugin for [PMMP](https://pmmp.io) :: Show custom item popup!__  
+  
+[![license](https://img.shields.io/github/license/PresentKim/ItemPopup-PMMP.svg?label=License)](./LICENSE)
+[![release](https://img.shields.io/github/release/PresentKim/ItemPopup-PMMP.svg?label=Release)](../../releases/latest)
+[![download](https://img.shields.io/github/downloads/PresentKim/ItemPopup-PMMP/total.svg?label=Download)](../../releases/latest)
+  
+*****
+  
+[*See the details*](../../wiki)  
