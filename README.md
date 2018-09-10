@@ -1,4 +1,4 @@
-# <img src="./assets/icon/index.svg" height="50" width="50"> ItemPopup  
+# <img src="https://rawgit.com/PresentKim/SVG-files/master/plugin-icons/itempopup.svg" height="50" width="50"> ItemPopup  
 __A plugin for [PMMP](https://pmmp.io) :: Show custom item popup!__  
   
 [![license](https://img.shields.io/github/license/Blugin/ItemPopup-PMMP.svg?label=License)](./LICENSE)
